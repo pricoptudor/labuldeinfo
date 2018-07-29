@@ -1,12 +1,12 @@
-# labuldeinfo
+# Labuldeinfo
 
 Bine ai venit !
 
-# Cum downloadm proiectul ?
+## Cum downloadm proiectul ?
 
 Git basics - https://docs.google.com/document/d/1mRQnHEGeBBuc7CIP-enydZF6qsJDK4pUeEWiwchoXJw/edit?usp=sharing
 
-# Cum rulam proiectul?
+## Cum rulam proiectul?
 
 Pentru a rula proiectul ai nevoie de urmatoarele unelte:
 
@@ -16,11 +16,11 @@ Pentru a rula proiectul ai nevoie de urmatoarele unelte:
 
 
 
-# Task - uri
+## Task'uri
 
-# Ziua 1: TBD
-# Ziua 2: TBD
-# Ziua 3: TBD
+### Ziua 1: TBD
+### Ziua 2: TBD
+### Ziua 3: TBD
 
 
 
