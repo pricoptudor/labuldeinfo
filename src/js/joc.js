@@ -47,9 +47,12 @@ function adaugaPlatforme() {
   *
   *
   * Task 2: Colecteaza restul de monede. - 5 puncte.
-  *
+  * 
   * Introdu codul tau aici
   * Indiciu: linia de mai sus
+  * 
+  * Extra: Orice alt mode de colectare 
+  * al monezilor (toate) - 10 puncte. Hack & slash!!!
   * */
 
 

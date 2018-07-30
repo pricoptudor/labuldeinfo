@@ -10,7 +10,16 @@
         </style>
     </head>
     <body>
+
+    <!-- Incarca resursele JS -->
     <script src="src/js/framework/phaser.js"></script>
     <script src="src/js/joc.js"></script>
+    
+    <!-- Javascript, in HTML ??!?! -->
+    <script> 
+        const copieJoc = initializeazaJoc;
+
+        window.onLoad = copieJoc();
+    </script>
     </body>
 </html>
