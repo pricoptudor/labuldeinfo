@@ -6,8 +6,8 @@ let jucator;
 let platforme;
 let jucatorulACastigat = false;
 let scor = 0;
-let scorVictorie = 100;
-let insigna;
+let scorVictorie = 50;
+let insigne;
 let obiecte;
 let tasteNavigare;
 let butonSaritura;
@@ -83,8 +83,8 @@ function initializeazaObiect(x, y, imagine) {
  * Initializeaza si adauga insigna victoriei pe ecran
  ***************************************************/
 function adaugaInsignaVictorie() {
-  insigna = joc.add.physicsGroup();
-  let insigna = insigna.create(750, 400, 'insigna');
+  insigne = joc.add.physicsGroup();
+  let insigna = insigne.create(750, 400, 'insigna');
   insigna.animations.add('spin');
   insigna.animations.play('spin', 10, true);
 }
@@ -169,7 +169,7 @@ function initializeazaJoc() {
     text.text = "SCOR: " + scor;
     joc.physics.arcade.collide(jucator, platforme);
     joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
-    joc.physics.arcade.overlap(jucator, insigna, managerInsignaVictorie);
+    joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
 
     jucator.body.velocity.x = 0;
 
@@ -205,4 +205,3 @@ function initializeazaJoc() {
   }
 }
 
-window.onload = initializeazaJoc();
