@@ -20,7 +20,7 @@ let variabile;
  ###########################################################*/
 
 /*************************
- * Adauga monezi pe ecran
+ * Adauga monede pe ecran
  *************************/
 function aduagaMonede() {
   obiecte = joc.add.physicsGroup();
