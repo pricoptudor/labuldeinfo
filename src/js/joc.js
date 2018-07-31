@@ -26,8 +26,6 @@ function aduagaMonede() {
   obiecte = joc.add.physicsGroup();
 
   initializeazaObiect(375, 400, 'moneda');
-
-
   initializeazaObiect(450, 100, 'moneda');
   initializeazaObiect(500, 100, 'moneda');
   initializeazaObiect(550, 100, 'moneda');
