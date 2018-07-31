@@ -10,7 +10,6 @@ Cloneaza proiectul folosind comanda 'git clone'. E.g.:
 ## git clone https://github.com/FunLabs/labuldeinfo.git
 
 
-
 # Cum editez ?
 
 Folosind un editor cod spre exemplu: VSCode https://code.visualstudio.com/ 
