@@ -4,12 +4,17 @@ Bine ai venit!
 
 # Cum downloadm proiectul ?
 
-Git basics - https://docs.google.com/document/d/1mRQnHEGeBBuc7CIP-enydZF6qsJDK4pUeEWiwchoXJw/edit?usp=sharing - TBD
+Git basics - https://docs.google.com/document/d/1mRQnHEGeBBuc7CIP-enydZF6qsJDK4pUeEWiwchoXJw/edit?usp=sharing
+Cloneaza proiectul folosind comanda 'git clone'. E.g.:
+
+## git clone https://github.com/FunLabs/labuldeinfo.git
+
+
 
 # Cum editez ?
 
-Dowloadeaza un editor (poti alege intre Sublime, Atom, VSCode - recomandat).
-VSCode - editor code -  https://code.visualstudio.com/
+Folosind un editor cod spre exemplu: VSCode https://code.visualstudio.com/ 
+Dupa ce am clonat repository'ul local, deschidem VSCode, dam click pe "Open...." si selectam folder'ul proiectului.
 
 # Cum rulam proiectul?
 
@@ -23,6 +28,8 @@ Pasi:
 
 1. Dupa ce ai terminat de downloadat / instalat, deschizi WebServer - selectezi folderul proiectului. 
 2. Deschide browserul Chrome si acceseaza in bara de input: localhost:8887
+
+
 
 
 
