@@ -4,7 +4,7 @@
 let joc;
 let jucator;
 let platforme;
-let jucatorulACastigat = false;
+let jucatorulACastigat = false;                                             
 let scor = 0;
 let scorVictorie = 50;
 let insigne;
@@ -40,6 +40,8 @@ function aduagaMonede() {
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
+  platforme.create(350,450, 'platforma');
+  platforme.create(150,300, 'platforma');
 
   /*
   * Task 1: Adauga o platforma astfel incat
@@ -49,13 +51,15 @@ function adaugaPlatforme() {
   * Task 2: Colecteaza restul de monede. - 5 puncte.
   * 
   * Introdu codul tau aici
+  *  platforme.create(350,450, 'platforma');
+  *  platforme.create(150,300, 'platforma');
   * Indiciu: linia de mai sus
   * 
   * Extra: Orice alt mode de colectare 
   * al monezilor (toate) - 10 puncte. Hack & slash!!!
   * */
 
-
+ 
   platforme.setAll('body.immovable', true);
 }
 
@@ -74,7 +78,7 @@ function initializeazaObiect(x, y, imagine) {
 
   // Atribuie obiectului proprietatea 'spin'(rotatie)
   obiect.animations.add('spin');
-  vitezaRotatie = 10;
+  vitezaRotatie = 20;
 
   obiect.animations.play('spin', vitezaRotatie, true);
 }
