@@ -6,7 +6,7 @@ let jucator;
 let platforme;
 let jucatorulACastigat = false;
 let scor = 0;
-let scorVictorie = 50;
+let scorVictorie =50;
 let insigne;
 let obiecte;
 let tasteNavigare;
@@ -39,16 +39,29 @@ function aduagaMonede() {
 ****************************/
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
-  platforme.create(450, 150, 'platforma');
+  platforme.create(400, 200, 'platforma');
+  platforme.create(500, 450, 'platforma');
+  platforme.create(450, 350, 'platforma');
+  // jucator = joc.add.sprite(600, 100, 'jucator');
+  // jucator.body.gravity.y = 150;
+
+  
+
+  
 
   /*
   * Task 1: Adauga o platforma astfel incat
   * sa colectezi o moneda. - 10 puncte.
+  *  adaugaPlatforme()
+  *  platforme = joc.add.physicsGroup();
+  *  platforme.create(440, 100, 'platforma');
   *
+
   *
   * Task 2: Colecteaza restul de monede. - 5 puncte.
   * 
   * Introdu codul tau aici
+  *
   * Indiciu: linia de mai sus
   * 
   * Extra: Orice alt mode de colectare 
