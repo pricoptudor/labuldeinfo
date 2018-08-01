@@ -32,6 +32,7 @@ function aduagaMonede() {
   initializeazaObiect(500, 100, 'moneda');
   initializeazaObiect(550, 100, 'moneda');
   initializeazaObiect(600, 100, 'moneda');
+  initializeazaObiect(290, 100, 'otrava');
 }
 
 /***************************
@@ -40,7 +41,7 @@ function aduagaMonede() {
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
-
+  
   /*
   * Task 1: Adauga o platforma astfel incat
   * sa colectezi o moneda. - 10 puncte.
@@ -54,7 +55,8 @@ function adaugaPlatforme() {
   * Extra: Orice alt mode de colectare 
   * al monezilor (toate) - 10 puncte. Hack & slash!!!
   * */
-
+ platforme.create(470, 457, 'platforma');
+ platforme.create(290, 300, 'platforma');
 
   platforme.setAll('body.immovable', true);
 }
@@ -133,6 +135,7 @@ function initializeazaJoc() {
     joc.load.spritesheet('jucator', 'src/img/jucator.png', 48, 62);
     joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
     joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
+    joc.load.spritesheet('otrava', 'src/img/otrava.png', 30, 42);
   }
 
   /***************************************************
@@ -151,6 +154,7 @@ function initializeazaJoc() {
     // Obiecte
     aduagaMonede();
     adaugaPlatforme();
+    adaugaOtrava();
 
     // Interactiuni
     tasteNavigare = joc.input.keyboard.createCursorKeys();
