@@ -29,7 +29,7 @@ function aduagaMonede() {
 
 
   initializeazaObiect(450, 100, 'moneda');
-  initializeazaObiect(500, 100, 'moneda');
+  initializeazaObiect(200, 440, 'moneda');
   initializeazaObiect(550, 100, 'moneda');
   initializeazaObiect(600, 100, 'moneda');
 }
@@ -40,6 +40,8 @@ function aduagaMonede() {
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
+  platforme.create(200, 440, 'platforma');
+  platforme.create(350, 300, 'platforma');
 
   /*
   * Task 1: Adauga o platforma astfel incat
