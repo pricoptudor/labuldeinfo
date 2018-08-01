@@ -38,13 +38,16 @@ function aduagaMonede() {
 * Adauga platforme pe ecran
 ****************************/
 function adaugaPlatforme() {
-  platforme = joc.add.physicsGroup();
+  platforme; = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
+  platforme.create(400, 300, 'platforma');
+  platforme.create(300, 400, 'platforma');
+
 
   /*
   * Task 1: Adauga o platforma astfel incat
   * sa colectezi o moneda. - 10 puncte.
-  *
+  * 
   *
   * Task 2: Colecteaza restul de monede. - 5 puncte.
   * 
