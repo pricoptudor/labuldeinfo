@@ -25,7 +25,7 @@ let variabile;
 function aduagaMonede() {
   obiecte = joc.add.physicsGroup();
 
-  initializeazaObiect(375, 400, 'moneda');
+  initializeazaObiect(300, 400, 'moneda');
 
 
   initializeazaObiect(450, 100, 'moneda');
@@ -33,30 +33,31 @@ function aduagaMonede() {
   initializeazaObiect(550, 100, 'moneda');
   initializeazaObiect(600, 100, 'moneda');
 }
-
 /***************************
 * Adauga platforme pe ecran
 ****************************/
+// function adaugaPlatforme() {
+//   platforme = joc.add.physicsGroup();
+//   platforme.create(450, 150, 'platforma');
+//   initializeazaObiect(450, 450, 'moneda');
+
+
+//   initializeazaObiect(450, 350, 'moneda');
+//   initializeazaObiect(500, 430, 'moneda');
+//   initializeazaObiect(550, 450, 'moneda');
+//   initializeazaObiect(600, 350, 'moneda');
+
+/***************************
+* Adauga platforme pe ecran
+****************************/ 
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
-
-  /*
-  * Task 1: Adauga o platforma astfel incat
-  * sa colectezi o moneda. - 10 puncte.
-  *
-  *
-  * Task 2: Colecteaza restul de monede. - 5 puncte.
-  * 
-  * Introdu codul tau aici
-  * Indiciu: linia de mai sus
-  * 
-  * Extra: Orice alt mode de colectare 
-  * al monezilor (toate) - 10 puncte. Hack & slash!!!
-  * */
-
-
-  platforme.setAll('body.immovable', true);
+  function adaugaPlatforme() {
+    platforme = joc.add.physicsGroup();
+    platforme.create(300, 150, 'platforma');
+  
+    platforme.setAll('body.immovable', true);
 }
 
 /***********************************************
@@ -92,7 +93,7 @@ function adaugaInsignaVictorie() {
 /****************************************************
  * Primeste un obiect ca parametru, modifica scor
  ****************************************************/
-function managerObiecte(jucator, obiect) {
+function managerObiecte(obiect) {
   obiect.kill();
   scor = scor + 10;
   if (scor >= scorVictorie) {
@@ -103,7 +104,7 @@ function managerObiecte(jucator, obiect) {
 /***************************************************
  * Manager - jucatorul a colectat insigna victoriei
  ***************************************************/
-function managerInsignaVictorie(jucator, insigna) {
+function managerInsignaVictorie(insigna) {
   insigna.kill();
   jucatorulACastigat = true;
 }
