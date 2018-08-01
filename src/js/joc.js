@@ -38,10 +38,10 @@ function aduagaMonede() {
 * Adauga platforme pe ecran
 ****************************/
 function adaugaPlatforme() {
-  platforme; = joc.add.physicsGroup();
+  platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
   platforme.create(400, 300, 'platforma');
-  platforme.create(300, 400, 'platforma');
+  platforme.create(300, 450, 'platforma');
 
 
   /*
