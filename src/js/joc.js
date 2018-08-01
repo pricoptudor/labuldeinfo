@@ -22,6 +22,7 @@ let variabile;
 /*************************
  * Adauga monede pe ecran
  *************************/
+
 function aduagaMonede() {
   obiecte = joc.add.physicsGroup();
 
@@ -37,10 +38,12 @@ function aduagaMonede() {
 /***************************
 * Adauga platforme pe ecran
 ****************************/
+
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
-  platforme.create(450, 150, 'platforma');
-
+  platforme.create(450, 150, 'platforma');``
+  platforme.create(450, 450, 'platforma');
+  platforme.create(250, 300, 'platforma');
   /*
   * Task 1: Adauga o platforma astfel incat
   * sa colectezi o moneda. - 10 puncte.
@@ -74,7 +77,7 @@ function initializeazaObiect(x, y, imagine) {
 
   // Atribuie obiectului proprietatea 'spin'(rotatie)
   obiect.animations.add('spin');
-  vitezaRotatie = 10;
+  vitezaRotatie = 500;
 
   obiect.animations.play('spin', vitezaRotatie, true);
 }
@@ -84,7 +87,7 @@ function initializeazaObiect(x, y, imagine) {
  ***************************************************/
 function adaugaInsignaVictorie() {
   insigne = joc.add.physicsGroup();
-  let insigna = insigne.create(750, 400, 'insigna');
+  let insigna = insigne.create(700, 400, 'insigna');
   insigna.animations.add('spin');
   insigna.animations.play('spin', 10, true);
 }
@@ -94,7 +97,7 @@ function adaugaInsignaVictorie() {
  ****************************************************/
 function managerObiecte(jucator, obiect) {
   obiect.kill();
-  scor = scor + 10;
+  scor = scor + 50;
   if (scor >= scorVictorie) {
       adaugaInsignaVictorie();
   }
