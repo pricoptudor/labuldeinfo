@@ -29,8 +29,6 @@ function aduagaMonede() {
   obiecte = joc.add.physicsGroup();
 
   initializeazaObiect(375, 400, 'moneda');
-
-
   initializeazaObiect(450, 100, 'moneda');
   initializeazaObiect(500, 100, 'moneda');
   initializeazaObiect(550, 100, 'moneda');
@@ -49,47 +47,6 @@ function adaugaPlatforme() {
   platforme.setAll('body.immovable', true);
 }
 
-/***************************
- *  Alte solutii:
- * Extra 1:
-   jucator = joc.add.sprite(50, 600, 'jucator');
-    jucator.animations.add('walk');
-    jucator.anchor.setTo(0.50, 1);
-    joc.physics.arcade.enable(jucator);
-    jucator.body.collideWorldBounds = true;
-    jucator.body.gravity.y = 100;
-
-    jucatorul poate sarii foarte sus si poate colecta monedele, astfel platformele nu mai trebuie folosite
-
- * Extra 2:
- 
-  function aduagaMonede() {
-  obiecte = joc.add.physicsGroup();
-
-  initializeazaObiect(375, 400, 'moneda');
-
-
-  initializeazaObiect(450, 400, 'moneda');
-  initializeazaObiect(500, 400, 'moneda');
-  initializeazaObiect(550, 400, 'moneda');
-  initializeazaObiect(600, 400, 'moneda');
-}
-
-plasand monedele mai jos jucatorul le poate colecta fara a fi nevoie de platforme
-
-***************************\
-   
-
-  /************************
-   * Adauga Otrava
-   ************************/
-function adaugaOtrava() {
-  otravuri = joc.add.physicsGroup();
-  let otrava = otrava.create(250, 400, 'otrava');
-  otrava.animations.add('spin');
-  otrava.animations.play('spin', 10, true);
-}
-
 /***********************************************
  * Initializeaza obiecte si le adauga pe ecran
  *
@@ -102,9 +59,6 @@ function adaugaOtrava() {
 function initializeazaObiect( x, y, imagine) {
   let obiect = obiecte.create(x, y, imagine);
   let vitezaRotatie;
-
-
-  
 
   // Atribuie obiectului proprietatea 'spin'(rotatie)
   obiect.animations.add('spin');
@@ -119,8 +73,21 @@ function initializeazaObiect( x, y, imagine) {
 function adaugaInsignaVictorie() {
   insigne = joc.add.physicsGroup();
   let insigna = insigne.create(600, 400, 'insigna');
-  insigna.animations.add('spin');
+  insigna.animations.add('spins');
   insigna.animations.play('spin', 10, true);
+}
+
+/************************
+* Adauga Otrava
+************************/
+function adaugaOtrava() {
+  otravuri = joc.add.physicsGroup();
+  let otrava = otravuri.create(250, 400, 'otrava');
+  // efectul il definim noi, la fel de bine se putea numi 'sticla'
+  // atat timp cat cele doua proprietati ale animatitie sunt identice
+  // pentru '.add' si '.play'
+  otrava.animations.add('bule');
+  otrava.animations.play('bule', 8, true);
 }
 
 /****************************************************
@@ -142,10 +109,14 @@ function managerInsignaVictorie(jucator, insigna) {
   jucatorulACastigat = true;
 }
 
- managerOtrava = function(jucator, otrava) {
+/***************************************************
+ * Manager - jucatorul a fost otravit
+ ***************************************************/
+function managerOtrava (jucator, otrava) {
   otrava.kill();
   jucatorulAPierdut = true;
 }
+
 /***************************************************
  * Functia principala a jocului
  ***************************************************/
@@ -171,8 +142,7 @@ function initializeazaJoc() {
     joc.load.spritesheet('jucator', 'src/img/jucator.png', 48, 62);
     joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
     joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
-    joc.load.spritesheet('otrava', 'src/img/otrava.png', 36, 44);
-
+    joc.load.spritesheet('otrava', 'src/img/otrava.png', 32, 32);
   }
 
   /***************************************************
@@ -183,7 +153,7 @@ function initializeazaJoc() {
     // Jucator
     jucator = joc.add.sprite(50, 600, 'jucator');
     jucator.animations.add('walk');
-    jucator.anchor.setTo(0.50, 1);
+    jucator.anchor.setTo(0.5, 1);
     joc.physics.arcade.enable(jucator);
     jucator.body.collideWorldBounds = true;
     jucator.body.gravity.y = 500;
@@ -214,7 +184,6 @@ function initializeazaJoc() {
     joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
     joc.physics.arcade.overlap(jucator, otravuri, managerOtrava);
-
 
     jucator.body.velocity.x = 0;
 
