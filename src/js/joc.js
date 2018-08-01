@@ -32,8 +32,13 @@ function aduagaMonede() {
   initializeazaObiect(500, 100, 'moneda');
   initializeazaObiect(550, 100, 'moneda');
   initializeazaObiect(600, 100, 'moneda');
+  
 }
 
+function adaugaOtrava(){
+  otrava = joc.add.physicsGroup();
+  initializeazaObiect(300,300,'otrava');
+}
 /***************************
 * Adauga platforme pe ecran
 ****************************/
@@ -41,6 +46,11 @@ function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
 
+  
+  platforme.create(400, 475, 'platforma');
+
+  platforme.create(425, 275, 'platforma');
+  platforme.create(350, 375, 'platforma');
   /*
   * Task 1: Adauga o platforma astfel incat
   * sa colectezi o moneda. - 10 puncte.
@@ -50,7 +60,7 @@ function adaugaPlatforme() {
   * 
   * Introdu codul tau aici
   * Indiciu: linia de mai sus
-  * 
+  
   * Extra: Orice alt mode de colectare 
   * al monezilor (toate) - 10 puncte. Hack & slash!!!
   * */
@@ -74,10 +84,11 @@ function initializeazaObiect(x, y, imagine) {
 
   // Atribuie obiectului proprietatea 'spin'(rotatie)
   obiect.animations.add('spin');
-  vitezaRotatie = 10;
+  vitezaRotatie = 30;
 
   obiect.animations.play('spin', vitezaRotatie, true);
 }
+
 
 /****************************************************
  * Initializeaza si adauga insigna victoriei pe ecran
@@ -108,6 +119,11 @@ function managerInsignaVictorie(jucator, insigna) {
   jucatorulACastigat = true;
 }
 
+function managerOtrava(jucator,otrava){
+  otrava.kill();
+  jucator.kill();
+  jucatorulACastigat=false;
+}
 /***************************************************
  * Functia principala a jocului
  ***************************************************/
@@ -129,10 +145,11 @@ function initializeazaJoc() {
     joc.stage.backgroundColor = '#af2345';
 
     // Incarca artefacte
-    joc.load.image('platforma', 'src/img/platformaTip1.png');
+    joc.load.image('platforma', 'src/img/platformaTip2.png');
     joc.load.spritesheet('jucator', 'src/img/jucator.png', 48, 62);
     joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
     joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
+    joc.load.spritesheet('otrava','src/img/otrava.png',36,44);
   }
 
   /***************************************************
@@ -151,6 +168,7 @@ function initializeazaJoc() {
     // Obiecte
     aduagaMonede();
     adaugaPlatforme();
+    adaugaOtrava();
 
     // Interactiuni
     tasteNavigare = joc.input.keyboard.createCursorKeys();
@@ -170,6 +188,7 @@ function initializeazaJoc() {
     joc.physics.arcade.collide(jucator, platforme);
     joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
+    joc.physics.arcade.overlap(jucator,otrava,managerOtrava);
 
     jucator.body.velocity.x = 0;
 
@@ -198,6 +217,10 @@ function initializeazaJoc() {
     // Conditie victorie
     if (jucatorulACastigat) {
       mesajVictorie.text = "AI CASTIGAT!!!";
+    }
+    else
+    {
+      mesajVictorie.text="Ai pierdut";
     }
   }
 
