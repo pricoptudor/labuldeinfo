@@ -77,7 +77,7 @@ function initializeazaObiect(x, y, imagine) {
 
   // Atribuie obiectului proprietatea 'spin'(rotatie)
   obiect.animations.add('spin');
-  vitezaRotatie = 10;
+  vitezaRotatie = 100;
 
   obiect.animations.play('spin', vitezaRotatie, true);
 }
