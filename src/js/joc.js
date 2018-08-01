@@ -63,6 +63,11 @@ function adaugaPlatforme() {
 }
 
 
+
+function adaugaOtrava(){
+  otrava=joc.add.physicsGroup();
+  otrava.create(250, 300, 'otrava');
+}
 /***********************************************
  * Initializeaza obiecte si le adauga pe ecran
  *
@@ -110,6 +115,11 @@ function managerObiecte(jucator, obiect) {
 function managerInsignaVictorie(jucator, insigna) {
   insigna.kill();
   jucatorulACastigat = true;
+}
+
+function managerOtrava(jucator, otrava){
+  jucator.kill();
+  jucatorulAPierdut= true;
 }
 
 /***************************************************
@@ -202,6 +212,9 @@ function initializeazaJoc() {
     // Conditie victorie
     if (jucatorulACastigat) {
       mesajVictorie.text = "AI CASTIGAT!!!";
+    }
+    if(jucatorulAPierdut){
+      mesajEsec.text="AI PIERDUT :(";
     }
   }
 
