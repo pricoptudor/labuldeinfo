@@ -25,9 +25,15 @@ let variabile;
 function aduagaMonede() {
   obiecte = joc.add.physicsGroup();
 
+  /*
+  initializeazaObiect(750, 400, 'moneda');
+  initializeazaObiect(750, 400, 'moneda');
+  initializeazaObiect(750, 400, 'moneda');
+  initializeazaObiect(750, 400, 'moneda');
+  initializeazaObiect(750, 400, 'moneda');
+  */
+
   initializeazaObiect(375, 400, 'moneda');
-
-
   initializeazaObiect(450, 100, 'moneda');
   initializeazaObiect(500, 100, 'moneda');
   initializeazaObiect(550, 100, 'moneda');
@@ -198,6 +204,8 @@ function initializeazaJoc() {
     }
 
     // Conditie victorie
+
+  //if(true) {
     if (jucatorulACastigat) {
       mesajVictorie.text = "AI CASTIGAT!!!";
     }
