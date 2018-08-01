@@ -57,15 +57,26 @@ function adaugaPlatforme() {
   * Extra: Orice alt mode de colectare 
   * al monezilor (toate) - 10 puncte. Hack & slash!!!
   * function seteazaStareaInitialaSiActiunile() {
-  * Extra - nu este nevoie de platforme
+  * Extra1 - nu este nevoie de platforme
     
-  // Jucator
     jucator = joc.add.sprite(50, 600, 'jucator');
     jucator.animations.add('walk');
     jucator.anchor.setTo(0.50, 1);
     joc.physics.arcade.enable(jucator);
     jucator.body.collideWorldBounds = true;
     jucator.body.gravity.y = 100;
+
+   
+  Extra2
+  
+    function aduagaMonede() {
+  obiecte = joc.add.physicsGroup();
+  initializeazaObiect(375, 400, 'moneda');
+  initializeazaObiect(450, 100, 'moneda');
+  initializeazaObiect(500, 100, 'moneda');
+  initializeazaObiect(550, 100, 'moneda');
+  initializeazaObiect(600, 100, 'moneda');
+}
 
   * */
 
