@@ -14,6 +14,9 @@ let butonSaritura;
 let text;
 let mesajVictorie;
 let variabile;
+let jucatorulAPierdut = false;
+let mesajPierdere;
+let otravuri;
 
 /*##########################################################
  ***                       Functii                       ***
@@ -43,57 +46,21 @@ function adaugaPlatforme() {
   platforme.create(250, 450, 'platforma');
   platforme.create(150, 300, 'platforma' );
   platforme.create(300, 150, 'platforma');
-
-  /*
-  * Task 1: Adauga o platforma astfel incat
-  * sa colectezi o moneda. - 10 puncte.
-  *
-  *
-  * Task 2: Colecteaza restul de monede. - 5 puncte.
-  * 
-  * Introdu codul tau aici
-  * Indiciu: linia de mai sus
-  * 
-  * Extra: Orice alt mode de colectare 
-  * al monezilor (toate) - 10 puncte. Hack & slash!!!
-  * function seteazaStareaInitialaSiActiunile() {
-  * Extra1 - nu este nevoie de platforme
-    
-    jucator = joc.add.sprite(50, 600, 'jucator');
-    jucator.animations.add('walk');
-    jucator.anchor.setTo(0.50, 1);
-    joc.physics.arcade.enable(jucator);
-    jucator.body.collideWorldBounds = true;
-    jucator.body.gravity.y = 100;
-
-   
-  Extra2
-
-    function aduagaMonede() {
-  obiecte = joc.add.physicsGroup();
-  initializeazaObiect(375, 400, 'moneda');
-  initializeazaObiect(450, 100, 'moneda');
-  initializeazaObiect(500, 100, 'moneda');
-  initializeazaObiect(550, 100, 'moneda');
-  initializeazaObiect(600, 100, 'moneda');
-
-  Extra3
-
-  function managerObiecte(jucator, obiect) {
-  obiect.kill();
-  scor = scor + 10;
-  if (scor >= 0) {
-      adaugaInsignaVictorie();
-  }
-
-
 }
 
-  * */
+  /************************
+   * Adauga Otrava
+   ************************/
+function adaugaOtrava() {
+  otravuri = joc.add.physicsGroup();
+  initializeazaObiect(200, 475, 'otrava');
 
+  // if (otrava.kill) {
 
-  platforme.setAll('body.immovable', true);
-}
+  // }
+
+  // platforme.setAll('body.immovable', true);
+};
 
 /***********************************************
  * Initializeaza obiecte si le adauga pe ecran
@@ -147,6 +114,10 @@ function managerInsignaVictorie(jucator, insigna) {
   jucatorulACastigat = true;
 }
 
+ managerOtrava = function(jucator, otrava) {
+  otrava.kill();
+  jucatorulAPierdut = true;
+}
 /***************************************************
  * Functia principala a jocului
  ***************************************************/
@@ -172,6 +143,8 @@ function initializeazaJoc() {
     joc.load.spritesheet('jucator', 'src/img/jucator.png', 48, 62);
     joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
     joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
+    joc.load.spritesheet('otrava', 'src/img/otrava.png', 36, 44);
+
   }
 
   /***************************************************
@@ -190,6 +163,7 @@ function initializeazaJoc() {
     // Obiecte
     aduagaMonede();
     adaugaPlatforme();
+    adaugaOtrava();
 
     // Interactiuni
     tasteNavigare = joc.input.keyboard.createCursorKeys();
@@ -209,6 +183,8 @@ function initializeazaJoc() {
     joc.physics.arcade.collide(jucator, platforme);
     joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
+    joc.physics.arcade.overlap(jucator, otravuri, managerInsignaVictorie);
+
 
     jucator.body.velocity.x = 0;
 
@@ -237,6 +213,10 @@ function initializeazaJoc() {
     // Conditie victorie
     if (jucatorulACastigat) {
       mesajVictorie.text = "AI CASTIGAT!!!";
+    }
+    // Conditie Pierdere
+    if (jucatorulAPierdut) {
+      mesajPierdere.text = "AI PIERDUT!";
     }
   }
 
