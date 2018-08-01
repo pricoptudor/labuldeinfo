@@ -40,7 +40,7 @@ function aduagaMonede() {
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
-
+  
   /*
   * Task 1: Adauga o platforma astfel incat
   * sa colectezi o moneda. - 10 puncte.
@@ -54,6 +54,9 @@ function adaugaPlatforme() {
   * Extra: Orice alt mode de colectare 
   * al monezilor (toate) - 10 puncte. Hack & slash!!!
   * */
+ platforme.create(375, 450, 'platforma');
+
+  platforme.create(200, 290, 'platforma');
 
 
   platforme.setAll('body.immovable', true);
