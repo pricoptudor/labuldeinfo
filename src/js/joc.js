@@ -40,7 +40,10 @@ function aduagaMonede() {
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
-
+  
+  platforme.create(400, 475,'platforma');
+  platforme.create(420, 275,'platforma');
+  platforme.create(350, 375, 'platforma');
   /*
   * Task 1: Adauga o platforma astfel incat
   * sa colectezi o moneda. - 10 puncte.
@@ -48,7 +51,7 @@ function adaugaPlatforme() {
   *
   * Task 2: Colecteaza restul de monede. - 5 puncte.
   * 
-  * Introdu codul tau aici
+
   * Indiciu: linia de mai sus
   * 
   * Extra: Orice alt mode de colectare 
@@ -58,6 +61,7 @@ function adaugaPlatforme() {
 
   platforme.setAll('body.immovable', true);
 }
+
 
 /***********************************************
  * Initializeaza obiecte si le adauga pe ecran
@@ -129,7 +133,7 @@ function initializeazaJoc() {
     joc.stage.backgroundColor = '#af2345';
 
     // Incarca artefacte
-    joc.load.image('platforma', 'src/img/platformaTip1.png');
+    joc.load.image('platforma', 'src/img/platformaTip2.png');
     joc.load.spritesheet('jucator', 'src/img/jucator.png', 48, 62);
     joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
     joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
