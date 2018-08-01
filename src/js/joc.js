@@ -46,21 +46,49 @@ function adaugaPlatforme() {
   platforme.create(250, 450, 'platforma');
   platforme.create(150, 300, 'platforma' );
   platforme.create(300, 150, 'platforma');
+  platforme.setAll('body.immovable', true);
 }
+
+/***************************
+ *  Alte solutii:
+ * Extra 1:
+   jucator = joc.add.sprite(50, 600, 'jucator');
+    jucator.animations.add('walk');
+    jucator.anchor.setTo(0.50, 1);
+    joc.physics.arcade.enable(jucator);
+    jucator.body.collideWorldBounds = true;
+    jucator.body.gravity.y = 100;
+
+    jucatorul poate sarii foarte sus si poate colecta monedele, astfel platformele nu mai trebuie folosite
+
+ * Extra 2:
+ 
+  function aduagaMonede() {
+  obiecte = joc.add.physicsGroup();
+
+  initializeazaObiect(375, 400, 'moneda');
+
+
+  initializeazaObiect(450, 400, 'moneda');
+  initializeazaObiect(500, 400, 'moneda');
+  initializeazaObiect(550, 400, 'moneda');
+  initializeazaObiect(600, 400, 'moneda');
+}
+
+plasand monedele mai jos jucatorul le poate colecta fara a fi nevoie de platforme
+
+***************************\
+   
 
   /************************
    * Adauga Otrava
    ************************/
 function adaugaOtrava() {
   otravuri = joc.add.physicsGroup();
-  initializeazaObiect(200, 475, 'otrava');
-
-  // if (otrava.kill) {
-
-  // }
-
-  // platforme.setAll('body.immovable', true);
-};
+  let otrava = otrava.create(250, 400, 'otrava');
+  otrava.animations.add('spin');
+  otrava.animations.play('spin', 10, true);
+}
 
 /***********************************************
  * Initializeaza obiecte si le adauga pe ecran
@@ -171,6 +199,8 @@ function initializeazaJoc() {
     text = joc.add.text(16, 16, "SCOR: " + scor, { font: "bold 24px Arial", fill: "white" });
     mesajVictorie = joc.add.text(joc.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
     mesajVictorie.anchor.setTo(0.5, 1);
+    mesajPierdere = joc.add.text(joc.world.centerX, 275, "", { font: "bold 48px Arial", fill: "White"});
+    mesajPierdere.anchor.setTo(0.5, 1);
   }
 
   /********************************************************
@@ -183,7 +213,7 @@ function initializeazaJoc() {
     joc.physics.arcade.collide(jucator, platforme);
     joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
-    joc.physics.arcade.overlap(jucator, otravuri, managerInsignaVictorie);
+    joc.physics.arcade.overlap(jucator, otravuri, managerOtrava);
 
 
     jucator.body.velocity.x = 0;
