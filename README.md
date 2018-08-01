@@ -1,6 +1,6 @@
 # labuldeinfo
 
-Bine ai venit!
+Bine ai venit! 1/08/2018
 
 # Cum downloadm proiectul ?
 
