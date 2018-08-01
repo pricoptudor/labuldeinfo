@@ -40,6 +40,10 @@ function aduagaMonede() {
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
+  platforme.create(450, 150, 'platforma');
+  platforme.create(400, 150, 'platforma');
+
+
 
   /*
   * Task 1: Adauga o platforma astfel incat
