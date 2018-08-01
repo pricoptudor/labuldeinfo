@@ -40,6 +40,9 @@ function aduagaMonede() {
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
+  platforme.create(250, 450, 'platforma');
+  platforme.create(150, 300, 'platforma' );
+  platforme.create(300, 150, 'platforma');
 
   /*
   * Task 1: Adauga o platforma astfel incat
@@ -53,6 +56,17 @@ function adaugaPlatforme() {
   * 
   * Extra: Orice alt mode de colectare 
   * al monezilor (toate) - 10 puncte. Hack & slash!!!
+  * function seteazaStareaInitialaSiActiunile() {
+  * Extra - nu este nevoie de platforme
+    
+  // Jucator
+    jucator = joc.add.sprite(50, 600, 'jucator');
+    jucator.animations.add('walk');
+    jucator.anchor.setTo(0.50, 1);
+    joc.physics.arcade.enable(jucator);
+    jucator.body.collideWorldBounds = true;
+    jucator.body.gravity.y = 100;
+
   * */
 
 
@@ -68,13 +82,16 @@ function adaugaPlatforme() {
  * cu care obiectul adaugat se invarte folosindu-te
  * de un parametru
  ***********************************************/
-function initializeazaObiect(x, y, imagine) {
+function initializeazaObiect( x, y, imagine) {
   let obiect = obiecte.create(x, y, imagine);
   let vitezaRotatie;
 
+
+  
+
   // Atribuie obiectului proprietatea 'spin'(rotatie)
   obiect.animations.add('spin');
-  vitezaRotatie = 10;
+  vitezaRotatie = 15;
 
   obiect.animations.play('spin', vitezaRotatie, true);
 }
@@ -84,7 +101,7 @@ function initializeazaObiect(x, y, imagine) {
  ***************************************************/
 function adaugaInsignaVictorie() {
   insigne = joc.add.physicsGroup();
-  let insigna = insigne.create(750, 400, 'insigna');
+  let insigna = insigne.create(600, 400, 'insigna');
   insigna.animations.add('spin');
   insigna.animations.play('spin', 10, true);
 }
@@ -143,7 +160,7 @@ function initializeazaJoc() {
     // Jucator
     jucator = joc.add.sprite(50, 600, 'jucator');
     jucator.animations.add('walk');
-    jucator.anchor.setTo(0.5, 1);
+    jucator.anchor.setTo(0.50, 1);
     joc.physics.arcade.enable(jucator);
     jucator.body.collideWorldBounds = true;
     jucator.body.gravity.y = 500;
