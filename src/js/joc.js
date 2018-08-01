@@ -28,8 +28,8 @@ function aduagaMonede() {
   initializeazaObiect(375, 400, 'moneda', 50);
 
 
-  initializeazaObiect(450, 100, 'moneda', 10);
-  initializeazaObiect(500, 100, 'moneda', 10);
+  initializeazaObiect(450, 100, 'moneda', 30);
+  initializeazaObiect(500, 100, 'moneda', 40);
   initializeazaObiect(550, 100, 'moneda', 10);
   initializeazaObiect(600, 100, 'moneda', 10);
 }
