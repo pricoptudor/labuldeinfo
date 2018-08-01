@@ -142,7 +142,9 @@ function initializeazaJoc() {
     joc.load.spritesheet('jucator', 'src/img/jucator.png', 48, 62);
     joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
     joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
-    joc.load.spritesheet('otrava', 'src/img/otrava.png', 32, 32);
+
+    // De ce 32, 32, uhm?...
+    joc.load.spritesheet('otrava', 'src/img/otrava.png', 32, 32); 
   }
 
   /***************************************************
