@@ -5,10 +5,12 @@ let joc;
 let jucator;
 let platforme;
 let jucatorulACastigat = false;
+let jucatorulAPierdut = false;
 let scor = 0;
 let scorVictorie = 50;
 let insigne;
 let obiecte;
+let otrava;
 let tasteNavigare;
 let butonSaritura;
 let text;
@@ -33,7 +35,16 @@ function aduagaMonede() {
   initializeazaObiect(500, 100, 'moneda');
   initializeazaObiect(550, 100, 'moneda');
   initializeazaObiect(600, 100, 'moneda');
+
 }
+
+
+function adaugaOtrava(){
+  otrava = joc.add.physicsGroup();
+  otrava.create(400, 100, 'otrava');
+  
+}
+
 
 /***************************
 * Adauga platforme pe ecran
@@ -41,7 +52,7 @@ function aduagaMonede() {
 
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
-  platforme.create(450, 150, 'platforma');``
+  platforme.create(450, 150, 'platforma');
   platforme.create(450, 450, 'platforma');
   platforme.create(250, 300, 'platforma');
   /*
@@ -77,10 +88,11 @@ function initializeazaObiect(x, y, imagine) {
 
   // Atribuie obiectului proprietatea 'spin'(rotatie)
   obiect.animations.add('spin');
-  vitezaRotatie = 500;
+  vitezaRotatie = 10;
 
   obiect.animations.play('spin', vitezaRotatie, true);
 }
+
 
 /****************************************************
  * Initializeaza si adauga insigna victoriei pe ecran
@@ -97,7 +109,7 @@ function adaugaInsignaVictorie() {
  ****************************************************/
 function managerObiecte(jucator, obiect) {
   obiect.kill();
-  scor = scor + 50;
+  scor = scor + 10;
   if (scor >= scorVictorie) {
       adaugaInsignaVictorie();
   }
@@ -110,6 +122,14 @@ function managerInsignaVictorie(jucator, insigna) {
   insigna.kill();
   jucatorulACastigat = true;
 }
+
+
+function managerOtrava(jucator, otrava) {
+  otrava.kill();
+  jucatorulAPierdut = true;
+}
+
+
 
 /***************************************************
  * Functia principala a jocului
@@ -136,6 +156,7 @@ function initializeazaJoc() {
     joc.load.spritesheet('jucator', 'src/img/jucator.png', 48, 62);
     joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
     joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
+    joc.load.spritesheet('otrava', 'src/img/otrava.png', 36, 44);
   }
 
   /***************************************************
@@ -154,6 +175,7 @@ function initializeazaJoc() {
     // Obiecte
     aduagaMonede();
     adaugaPlatforme();
+    adaugaOtrava();
 
     // Interactiuni
     tasteNavigare = joc.input.keyboard.createCursorKeys();
@@ -173,6 +195,7 @@ function initializeazaJoc() {
     joc.physics.arcade.collide(jucator, platforme);
     joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
+    joc.physics.arcade.overlap(jucator, otrava, managerOtrava);
 
     jucator.body.velocity.x = 0;
 
@@ -201,6 +224,9 @@ function initializeazaJoc() {
     // Conditie victorie
     if (jucatorulACastigat) {
       mesajVictorie.text = "AI CASTIGAT!!!";
+    }
+    if (jucatorulAPierdut){
+      mesajVictorie.text = "AI PIERDUT!!!";
     }
   }
 
