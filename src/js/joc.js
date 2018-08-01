@@ -23,7 +23,7 @@ let variabile;
  * Adauga monede pe ecran
  *************************/
 function aduagaMonede() {
-  obiecte = joc.add.physicsGroup();
+obiecte = joc.add.physicsGroup();
 
   initializeazaObiect(375, 400, 'moneda');
 
@@ -40,11 +40,14 @@ function aduagaMonede() {
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
+  
+  platforme.create(480, 465, 'platforma');
+  platforme.create(350, 305, 'platforma');
+
 
   /*
   * Task 1: Adauga o platforma astfel incat
   * sa colectezi o moneda. - 10 puncte.
-  *
   *
   * Task 2: Colecteaza restul de monede. - 5 puncte.
   * 
@@ -55,10 +58,10 @@ function adaugaPlatforme() {
   * al monezilor (toate) - 10 puncte. Hack & slash!!!
   * */
 
-
+ 
   platforme.setAll('body.immovable', true);
 }
-
+;
 /***********************************************
  * Initializeaza obiecte si le adauga pe ecran
  *
@@ -70,6 +73,8 @@ function adaugaPlatforme() {
  ***********************************************/
 function initializeazaObiect(x, y, imagine) {
   let obiect = obiecte.create(x, y, imagine);
+
+  
   let vitezaRotatie;
 
   // Atribuie obiectului proprietatea 'spin'(rotatie)
