@@ -14,7 +14,7 @@ let butonSaritura;
 let text;
 let mesajVictorie;
 let variabile;
-let text2;
+
 
 
 /*##########################################################
@@ -160,7 +160,6 @@ function initializeazaJoc() {
     butonSaritura = joc.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     text = joc.add.text(16, 16, "SCOR: " + scor, { font: "bold 24px Arial", fill: "white" });
     mesajVictorie = joc.add.text(joc.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
-    text2 = joc.add.text(16, 64, "Timer: " + timp, { font: "bold 24px Arial", fill: "white" });
     mesajVictorie.anchor.setTo(0.5, 1);
   }
 
@@ -171,7 +170,6 @@ function initializeazaJoc() {
   function updateazaJoc() {
 
     text.text = "SCOR: " + scor; 
-    text.text2="Timer: "+timp;
     joc.physics.arcade.collide(jucator, platforme);
     joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
