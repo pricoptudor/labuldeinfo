@@ -26,14 +26,19 @@ let variabile;
  *************************/
 function aduagaMonede() {
   obiecte = joc.add.physicsGroup();
+  initializeazaObiect(375, 400, 'moneda');
 
-  initializeazaObiect(375, 500, 'moneda');
 
-
+  initializeazaObiect(450, 100, 'moneda');
+  initializeazaObiect(500, 100, 'moneda');
+  initializeazaObiect(550, 100, 'moneda');
+  initializeazaObiect(600, 100, 'moneda');
+  /* initializeazaObiect(375, 500, 'moneda');
   initializeazaObiect(450, 400, 'moneda');
   initializeazaObiect(500, 400, 'moneda');
   initializeazaObiect(550, 300, 'moneda');
-  initializeazaObiect(600, 300, 'moneda');
+  initializeazaObiect(600, 300, 'moneda');*/
+
 }
 
 /***************************
@@ -41,8 +46,9 @@ function aduagaMonede() {
 ****************************/
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
-  
-  
+  platforme.create(150, 450, 'platforma');
+  platforme.create(250, 300, 'platforma');
+  //a doua varianta nu are platforme
 
   /*
   * Task 1: Adauga o platforma astfel incat
