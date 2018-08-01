@@ -11,6 +11,7 @@ Cloneaza proiectul folosind comanda 'git clone'. E.g.:
 
 
 # Cum nu editez ?
+# Cum editez codul?
 
 Folosind un editor cod spre exemplu: VSCode https://code.visualstudio.com/ 
 Dupa ce am clonat repository'ul local, deschidem VSCode, dam click pe "Open...." si selectam folder'ul proiectului.
