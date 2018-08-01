@@ -68,7 +68,7 @@ function adaugaPlatforme() {
 
    
   Extra2
-  
+
     function aduagaMonede() {
   obiecte = joc.add.physicsGroup();
   initializeazaObiect(375, 400, 'moneda');
@@ -76,6 +76,17 @@ function adaugaPlatforme() {
   initializeazaObiect(500, 100, 'moneda');
   initializeazaObiect(550, 100, 'moneda');
   initializeazaObiect(600, 100, 'moneda');
+
+  Extra3
+
+  function managerObiecte(jucator, obiect) {
+  obiect.kill();
+  scor = scor + 10;
+  if (scor >= 0) {
+      adaugaInsignaVictorie();
+  }
+
+
 }
 
   * */
