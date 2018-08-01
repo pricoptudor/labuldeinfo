@@ -43,8 +43,8 @@ function adaugaPlatforme() {
 
   /*
   * Task 1: Adauga o platforma astfel incat
-  * sa colectezi o moneda. - 10 puncte.
-  *
+  * sa colectezi o moneda. - 10 puncte
+
   *
   * Task 2: Colecteaza restul de monede. - 5 puncte.
   * 
@@ -54,6 +54,11 @@ function adaugaPlatforme() {
   * Extra: Orice alt mode de colectare 
   * al monezilor (toate) - 10 puncte. Hack & slash!!!
   * */
+ platforme.create(400, 300, 'platforma');
+
+ platforme.create(500,400 'platforma');
+
+
 
 
   platforme.setAll('body.immovable', true);
