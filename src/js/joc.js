@@ -39,8 +39,12 @@ function aduagaMonede() {
 ****************************/
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
-  platforme.create(450, 150, 'platforma');
-
+  
+  platforme.create(200, 150, 'platforma');
+  platforme.create(450, 200, 'platforma');
+  platforme.create(125, 500, 'platforma');
+  platforme.create(500, 300, 'platforma');
+  platforme.create(555, 450, 'platforma');
   /*
   * Task 1: Adauga o platforma astfel incat
   * sa colectezi o moneda. - 10 puncte.
@@ -74,7 +78,8 @@ function initializeazaObiect(x, y, imagine) {
 
   // Atribuie obiectului proprietatea 'spin'(rotatie)
   obiect.animations.add('spin');
-  vitezaRotatie = 10;
+  vitezaRotatie = 20
+  ;
 
   obiect.animations.play('spin', vitezaRotatie, true);
 }
