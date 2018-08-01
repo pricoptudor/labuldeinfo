@@ -25,13 +25,13 @@ let variabile;
 function aduagaMonede() {
   obiecte = joc.add.physicsGroup();
 
-  initializeazaObiect(375, 400, 'moneda');
+  initializeazaObiect(375, 400, 'moneda', 50);
 
 
-  initializeazaObiect(450, 100, 'moneda');
-  initializeazaObiect(500, 100, 'moneda');
-  initializeazaObiect(550, 100, 'moneda');
-  initializeazaObiect(600, 100, 'moneda');
+  initializeazaObiect(450, 100, 'moneda', 10);
+  initializeazaObiect(500, 100, 'moneda', 10);
+  initializeazaObiect(550, 100, 'moneda', 10);
+  initializeazaObiect(600, 100, 'moneda', 10);
 }
 
 /***************************
@@ -40,19 +40,18 @@ function aduagaMonede() {
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   platforme.create(450, 150, 'platforma');
-
   /*
   * Task 1: Adauga o platforma astfel incat
   * sa colectezi o moneda. - 10 puncte.
-  *
-  *
-  * Task 2: Colecteaza restul de monede. - 5 puncte.
-  * 
-  * Introdu codul tau aici
-  * Indiciu: linia de mai sus
+  */
+ platforme.create(200, 440, 'platforma');
+  /* Task 2: Colecteaza restul de monede. - 5 puncte.
+  */ 
+  platforme.create(330, 300, 'platforma');
+  /* Indiciu: linia de mai sus
   * 
   * Extra: Orice alt mode de colectare 
-  * al monezilor (toate) - 10 puncte. Hack & slash!!!
+  * al monedelor (toate) - 10 puncte. Hack & slash!!!
   * */
 
 
@@ -68,13 +67,13 @@ function adaugaPlatforme() {
  * cu care obiectul adaugat se invarte folosindu-te
  * de un parametru
  ***********************************************/
-function initializeazaObiect(x, y, imagine) {
+function initializeazaObiect(x, y, imagine, vitezaRotatie) {
   let obiect = obiecte.create(x, y, imagine);
-  let vitezaRotatie;
+  // let vitezaRotatie;
 
   // Atribuie obiectului proprietatea 'spin'(rotatie)
   obiect.animations.add('spin');
-  vitezaRotatie = 10;
+  // vitezaRotatie = 10;
 
   obiect.animations.play('spin', vitezaRotatie, true);
 }
