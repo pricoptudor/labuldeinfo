@@ -54,9 +54,8 @@ function adaugaPlatforme() {
   * Extra: Orice alt mode de colectare 
   * al monezilor (toate) - 10 puncte. Hack & slash!!!
   * */
- platforme.create(400, 300, 'platforma');
-
- platforme.create(500,400 'platforma');
+ platforme.create(400, 200, 'platforma');
+ platforme.create(600,400 'platforma');
 
 
 
