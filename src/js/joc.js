@@ -17,6 +17,7 @@ let variabile;
 let jucatorulAPierdut = false;
 let mesajPierdere;
 let otravuri;
+let monede = [];
 let coordonateMonede = [
   {X: 375, Y:400},
   {X: 450, Y:100},
@@ -66,13 +67,28 @@ function adaugaPlatforme() {
 function initializeazaObiect( x, y, imagine) {
   let obiect = obiecte.create(x, y, imagine);
   let vitezaRotatie;
+  let mers;
 
   // Atribuie obiectului proprietatea 'spin'(rotatie)
   obiect.animations.add('spin');
-  vitezaRotatie = 15;
+  
+  vitezaRotatie = 10;
 
   obiect.animations.play('spin', vitezaRotatie, true);
+  obiect.body.collideWorldBounds = true;
+  obiect.body.gravity.x = 500;
+  obiect.body.collideWorldBounds = true;
+  obiect.body.velocity.x = -350;
+  obiect.body.collideWorldBounds = true;
+  obiect.body.gravity.x =400;
+  
+  monede.push(obiect);
+  
 }
+
+
+
+
 
 /****************************************************
  * Initializeaza si adauga insigna victoriei pe ecran
@@ -212,6 +228,14 @@ function initializeazaJoc() {
     // Jucatorul nu se misca
     else {
       jucator.animations.stop();
+    }
+
+    for (i = 0; i < monede.length; i++) {
+      if (monede[i].x > coordonateMonede[i].X + 30) {
+        monede[i].body.velocity.x = -350;
+      } else if (monede[i].x < coordonateMonede[i].X - 200) {
+        monede[i].body.velocity.x = 350;
+      }
     }
 
     // Conditie saritura
