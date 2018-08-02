@@ -217,8 +217,6 @@ function initializeazaJoc() {
     adaugaPlatforme();
     adaugaOtrava();
     adaugaBroasca();
-    
-    
 
     // Interactiuni
     tasteNavigare = joc.input.keyboard.createCursorKeys();
@@ -245,31 +243,6 @@ function initializeazaJoc() {
     joc.physics.arcade.overlap(jucator, broasca, managerBroasca);
 
     jucator.body.velocity.x = 0;
-    
-    if(broasca.x>320)
-    { broasca.body.velocity.x = -200;
-      broasca.scale.x = -1;}
-    else
-      if(broasca.x<150)
-        {broasca.body.velocity.x = 200;
-          broasca.scale.x = 1;}
-
-    // Este sageata stanga apasata?
-    if (tasteNavigare.left.isDown) {
-      jucator.animations.play('mers', 10, true);
-      jucator.body.velocity.x = -300;
-      jucator.scale.x = - 1;
-    }
-    // Este sageata dreapta apasata?
-    else if (tasteNavigare.right.isDown) {
-      jucator.animations.play('mers', 10, true);
-      jucator.body.velocity.x = 300;
-      jucator.scale.x = 1;
-    }
-    // Jucatorul nu se misca
-    else {
-      jucator.animations.stop();
-    }
 
     for (i = 0; i < monede.length; i++) {
       if (monede[i].x > coordonateMonede[i].X + 30) {
@@ -277,6 +250,34 @@ function initializeazaJoc() {
       } else if (monede[i].x < coordonateMonede[i].X - 200) {
         monede[i].body.velocity.x = 350;
       }
+    }
+    
+    if(broasca.x>320) { 
+      broasca.body.velocity.x = -200;
+      broasca.scale.x = -1;
+    }
+    else if(broasca.x<150) {
+      broasca.body.velocity.x = 200;
+      broasca.scale.x = 1;
+    }
+
+    // Este sageata stanga apasata?
+    if (tasteNavigare.left.isDown) {
+      jucator.animations.play('mers', 10, true);
+      jucator.body.velocity.x = -300;
+      jucator.scale.x = - 1;
+    }
+    
+    // Este sageata dreapta apasata?
+    else if (tasteNavigare.right.isDown) {
+      jucator.animations.play('mers', 10, true);
+      jucator.body.velocity.x = 300;
+      jucator.scale.x = 1;
+    }
+    
+    // Jucatorul nu se misca
+    else {
+      jucator.animations.stop();
     }
 
     // Conditie saritura
