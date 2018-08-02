@@ -25,11 +25,11 @@ let variabile;
 function aduagaMonede() {
   obiecte = joc.add.physicsGroup();
 
-  initializeazaObiect(375, 400, 'moneda');
-  initializeazaObiect(450, 100, 'moneda');
-  initializeazaObiect(500, 100, 'moneda');
-  initializeazaObiect(550, 100, 'moneda');
-  initializeazaObiect(600, 100, 'moneda');
+  initializeazaObiect(375, 400, 'moneda', 10);
+  initializeazaObiect(450, 100, 'moneda', 15);
+  initializeazaObiect(500, 100, 'moneda', 10);
+  initializeazaObiect(550, 100, 'moneda', 20);
+  initializeazaObiect(600, 100, 'moneda', 25);
 }
 
 /***************************
@@ -67,13 +67,13 @@ function adaugaPlatforme() {
  * cu care obiectul adaugat se invarte folosindu-te
  * de un parametru
  ***********************************************/
-function initializeazaObiect(x, y, imagine) {
-  let obiect = obiecte.create(x, y, imagine);
-  let vitezaRotatie;
+function initializeazaObiect(x, y, imagine, vitezaRotatie) {
+  let obiect = obiecte.create(x, y, imagine,vitezaRotatie );
+
 
   // Atribuie obiectului proprietatea 'spin'(rotatie)
   obiect.animations.add('spin');
-  vitezaRotatie = 20;
+  
 
   obiect.animations.play('spin', vitezaRotatie, true);
 }
