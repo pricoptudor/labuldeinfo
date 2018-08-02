@@ -17,6 +17,8 @@ let variabile;
 let jucatorulAPierdut = false;
 let mesajPierdere;
 let otravuri;
+let broasca;
+let broaste;
 
 /*##########################################################
  ***                       Functii                       ***
@@ -27,12 +29,18 @@ let otravuri;
  *************************/
 function aduagaMonede() {
   obiecte = joc.add.physicsGroup();
+  
 
   initializeazaObiect(375, 400, 'moneda');
   initializeazaObiect(450, 100, 'moneda');
   initializeazaObiect(500, 100, 'moneda');
   initializeazaObiect(550, 100, 'moneda');
   initializeazaObiect(600, 100, 'moneda');
+}
+function adaugaBroasca() {
+  broaste = joc.add.physicsGroup();
+  initializeazaBroasca(150, 270);
+
 }
 
 /***************************
@@ -46,6 +54,7 @@ function adaugaPlatforme() {
   platforme.create(300, 150, 'platforma');
   platforme.setAll('body.immovable', true);
 }
+
 
 /***********************************************
  * Initializeaza obiecte si le adauga pe ecran
@@ -89,7 +98,18 @@ function adaugaOtrava() {
   otrava.animations.add('bule');
   otrava.animations.play('bule', 8, true);
 }
+function initializeazaBroasca(x, y) {
+  broaste = joc.add.physicsGroup();
+  
+  broasca = broaste.create(x, y, 'broasca');
+  
+  broasca.animations.add('walk');
+  broasca.animations.play('walk', 5, true);
+  broasca.body.velocity.x = 200;
+  broasca.body.collideWorldBounds = true;
 
+
+}
 /****************************************************
  * Primeste un obiect ca parametru, modifica scor
  ****************************************************/
@@ -114,8 +134,15 @@ function managerInsignaVictorie(jucator, insigna) {
  ***************************************************/
 function managerOtrava (jucator, otrava) {
   otrava.kill();
+  jucator.kill();
   jucatorulAPierdut = true;
 }
+function managerBroasca (jucator, broasca){
+  broasca.kill();
+  jucator.kill();
+  jucatorulAPierdut = true;
+}
+
 
 /***************************************************
  * Functia principala a jocului
@@ -138,10 +165,11 @@ function initializeazaJoc() {
     joc.stage.backgroundColor = '#af2345';
 
     // Incarca artefacte
-    joc.load.image('platforma', 'src/img/platformaTip1.png');
+    joc.load.image('platforma', 'src/img/platformaTip2.png');
     joc.load.spritesheet('jucator', 'src/img/jucator.png', 48, 62);
     joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
     joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
+    joc.load.spritesheet('broasca', 'src/img/broasca.png', 32, 32);
 
     // De ce 32, 32, uhm?...
     joc.load.spritesheet('otrava', 'src/img/otrava.png', 32, 32); 
@@ -159,11 +187,14 @@ function initializeazaJoc() {
     joc.physics.arcade.enable(jucator);
     jucator.body.collideWorldBounds = true;
     jucator.body.gravity.y = 500;
-
+  
     // Obiecte
     aduagaMonede();
     adaugaPlatforme();
     adaugaOtrava();
+    adaugaBroasca();
+    
+    
 
     // Interactiuni
     tasteNavigare = joc.input.keyboard.createCursorKeys();
@@ -186,8 +217,15 @@ function initializeazaJoc() {
     joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
     joc.physics.arcade.overlap(jucator, otravuri, managerOtrava);
+    joc.physics.arcade.overlap(jucator, broasca, managerBroasca);
 
     jucator.body.velocity.x = 0;
+    
+    if(broasca.x>320)
+       broasca.body.velocity.x = -200;
+    else
+      if(broasca.x<150)
+        broasca.body.velocity.x = 200;
 
     // Este sageata stanga apasata?
     if (tasteNavigare.left.isDown) {
@@ -207,7 +245,7 @@ function initializeazaJoc() {
     }
 
     // Conditie saritura
-    if (butonSaritura.isDown ) {
+    if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
       jucator.body.velocity.y = -400;
     }
 
