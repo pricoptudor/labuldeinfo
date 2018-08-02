@@ -4,6 +4,7 @@
 let joc;
 let jucator;
 let platforme;
+let platformeTransparente;
 let jucatorulACastigat = false;
 let scor = 0;
 let scorVictorie = 50;
@@ -55,9 +56,13 @@ function adaugaPlatforme() {
 
   platforme.create(450, 150, 'platforma');
   platforme.create(250, 450, 'platforma');
-  platforme.create(150, 300, 'platforma' );
   platforme.create(300, 150, 'platforma');
+  platforme.create(500, 300, 'platforma');
   platforme.setAll('body.immovable', true);
+
+  platformeTransparente = joc.add.physicsGroup();
+  platformeTransparente.create(125, 300, 'platforma' );
+  platformeTransparente.setAll('body.immovable', true);
 }
 
 /***********************************************
@@ -90,11 +95,14 @@ function adaugaInsignaVictorie() {
 function adaugaOtrava() {
   otravuri = joc.add.physicsGroup();
   let otrava = otravuri.create(250, 400, 'otrava');
+  let otrava2 = otravuri.create(550, 250, 'otrava');
   // efectul il definim noi, la fel de bine se putea numi 'sticla'
   // atat timp cat cele doua proprietati ale animatitie sunt identice
   // pentru '.add' si '.play'
   otrava.animations.add('bule');
   otrava.animations.play('bule', 8, true);
+  otrava2.animations.add('bule');
+  otrava2.animations.play('bule', 8, true);
 }
 
 /****************************************************
@@ -123,6 +131,10 @@ function managerOtrava (jucator, otrava) {
   otrava.kill();
   jucator.kill();
   jucatorulAPierdut = true;
+}
+
+function managerPlatforma(jucator, platforma) {
+  platforma.kill();
 }
 
 /***************************************************
@@ -190,10 +202,21 @@ function initializeazaJoc() {
   function updateazaJoc() {
 
     text.text = "SCOR: " + scor;
+    if(jucator.body.velocity.y > 0)
+    {
+    joc.physics.arcade.overlap(jucator, platformeTransparente, managerPlatforma);
+    }
+    else
+    joc.physics.arcade.collide(jucator, platformeTransparente);
+
+
     joc.physics.arcade.collide(jucator, platforme);
+
+
     joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
     joc.physics.arcade.overlap(jucator, otravuri, managerOtrava);
+    
 
     jucator.body.velocity.x = 0;
 
