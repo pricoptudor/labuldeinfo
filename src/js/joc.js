@@ -32,6 +32,20 @@ function aduagaMonede() {
   initializeazaObiect(500, 100, 'moneda', 40);
   initializeazaObiect(550, 100, 'moneda', 10);
   initializeazaObiect(600, 100, 'moneda', 10);
+
+  initializeazaObiect(200, 200, 'otrava', 10);
+
+  /*
+  Asezam monedele mai jos?
+  initializeazaObiect(375, 400, 'moneda', 50);
+
+
+  initializeazaObiect(450, 350, 'moneda', 30);
+  initializeazaObiect(500, 350, 'moneda', 40);
+  initializeazaObiect(550, 400, 'moneda', 10);
+  initializeazaObiect(600, 400, 'moneda', 10);
+
+  */
 }
 
 /***************************
@@ -132,6 +146,7 @@ function initializeazaJoc() {
     joc.load.spritesheet('jucator', 'src/img/jucator.png', 48, 62);
     joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
     joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
+    joc.load.spritesheet('otrava', 'src/img/otrava.png', 32, 32);
   }
 
   /***************************************************
