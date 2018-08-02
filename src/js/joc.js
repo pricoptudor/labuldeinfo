@@ -18,6 +18,8 @@ let jucatorulAPierdut = false;
 let mesajPierdere;
 let otravuri;
 let monede = [];
+let stele;
+let powerUp = 0;
 let coordonateMonede = [
   {X: 375, Y:400},
   {X: 450, Y:100},
@@ -27,6 +29,12 @@ let coordonateMonede = [
 ];
 let broasca;
 let broaste;
+let coordonateStele = [
+  {X: 650, Y:300},
+  {X: 750, Y:550},
+  {X: 250, Y:200},
+];
+
 
 /*##########################################################
  ***                       Functii                       ***
@@ -53,7 +61,17 @@ function aduagaMonede(coordanate) {
 function adaugaBroasca() {
   broaste = joc.add.physicsGroup();
   initializeazaBroasca(150, 270);
+}
 
+function adaugaStele(coordanate){
+  stele = joc.add.physicsGroup();
+  for(let index=0; index<3; index++) {
+    if(coordanate[index].X === null || coordanate[index].Y == 'undefined') {
+      console.log("adauagaStele: eroare coordonate");
+    } 
+
+    initializeazaStele(coordanate[index].X, coordanate[index].Y, 'stea');
+  }
 }
 
 /***************************
@@ -63,12 +81,12 @@ function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
 
   platforme.create(450, 150, 'platforma');
-  platforme.create(250, 450, 'platforma');
+  platforme.create(250, 440, 'platforma');
   platforme.create(150, 300, 'platforma' );
   platforme.create(300, 150, 'platforma');
+  platforme.create(350, 540, 'platforma');
   platforme.setAll('body.immovable', true);
 }
-
 
 /***********************************************
  * Initializeaza obiecte si le adauga pe ecran *
@@ -92,11 +110,18 @@ function initializeazaObiect( x, y, imagine) {
   obiect.body.gravity.x =400;
   
   monede.push(obiect);
-  
 }
 
+function initializeazaStele( x, y, imagine) {
+  let stea = stele.create(x, y, imagine);
+  let vitezaRotatie;
 
+  // Atribuie obiectului proprietatea 'spin'(rotatie)
+  stea.animations.add('spin');
+  vitezaRotatie = 15;
 
+  stea.animations.play('spin', vitezaRotatie, true);
+}
 
 
 /****************************************************
@@ -137,6 +162,7 @@ function initializeazaBroasca(x, y) {
  * Primeste un obiect ca parametru, modifica scor
  ****************************************************/
 function managerObiecte(jucator, obiect) {
+  console.log('stea');
   obiect.kill();
   scor = scor + 10;
   if (scor >= scorVictorie) {
@@ -149,6 +175,7 @@ function managerObiecte(jucator, obiect) {
  ***************************************************/
 function managerInsignaVictorie(jucator, insigna) {
   insigna.kill();
+  jucator.kill();
   jucatorulACastigat = true;
 }
 
@@ -165,6 +192,12 @@ function managerBroasca (jucator, broasca){
   broasca.kill();
   jucator.kill();
   jucatorulAPierdut = true;
+}
+function managerStea (jucator, stea) {
+  
+  powerUp = Math.floor(Math.random() * 3) + 1;
+  console.log(powerUp);
+  stea.kill();
 }
 
 
@@ -197,6 +230,7 @@ function initializeazaJoc() {
 
     // De ce 32, 32, uhm?...
     joc.load.spritesheet('otrava', 'src/img/otrava.png', 32, 32); 
+    joc.load.spritesheet('stea', 'src/img/stea.png', 32, 32); 
   }
 
   /***************************************************
@@ -214,6 +248,7 @@ function initializeazaJoc() {
   
     // Obiecte
     aduagaMonede(coordonateMonede);
+    adaugaStele(coordonateStele);
     adaugaPlatforme();
     adaugaOtrava();
     adaugaBroasca();
@@ -241,6 +276,7 @@ function initializeazaJoc() {
     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
     joc.physics.arcade.overlap(jucator, otravuri, managerOtrava);
     joc.physics.arcade.overlap(jucator, broasca, managerBroasca);
+    joc.physics.arcade.overlap(jucator, stele, managerStea);
 
     jucator.body.velocity.x = 0;
 
@@ -262,27 +298,90 @@ function initializeazaJoc() {
     }
 
     // Este sageata stanga apasata?
-    if (tasteNavigare.left.isDown) {
-      jucator.animations.play('mers', 10, true);
-      jucator.body.velocity.x = -300;
-      jucator.scale.x = - 1;
-    }
-    
-    // Este sageata dreapta apasata?
-    else if (tasteNavigare.right.isDown) {
-      jucator.animations.play('mers', 10, true);
-      jucator.body.velocity.x = 300;
-      jucator.scale.x = 1;
-    }
-    
-    // Jucatorul nu se misca
-    else {
-      jucator.animations.stop();
-    }
+    if (powerUp == 0) {
+      if (tasteNavigare.left.isDown) {
+        jucator.animations.play('mers', 10, true);
+        jucator.body.velocity.x = -300;
+        jucator.scale.x = - 1;
+      }
+      // Este sageata dreapta apasata?
+      else if (tasteNavigare.right.isDown) {
+        jucator.animations.play('mers', 10, true);
+        jucator.body.velocity.x = 300;
+        jucator.scale.x = 1;
+      }
+      // Jucatorul nu se misca
+      else {
+        jucator.animations.stop();
+      }
 
-    // Conditie saritura
-    if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
-      jucator.body.velocity.y = -400;
+      // Conditie saritura
+      if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
+        jucator.body.velocity.y = -400;
+      }
+    } else if (powerUp == 1) {
+      if (tasteNavigare.left.isDown) {
+        jucator.animations.play('mers', 10, true);
+        jucator.body.velocity.x = -600;
+        jucator.scale.x = - 1;
+      }
+      // Este sageata dreapta apasata?
+      else if (tasteNavigare.right.isDown) {
+        jucator.animations.play('mers', 10, true);
+        jucator.body.velocity.x = 600;
+        jucator.scale.x = 1;
+      }
+      // Jucatorul nu se misca
+      else {
+        jucator.animations.stop();
+      }
+
+      // Conditie saritura
+      if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
+        jucator.body.velocity.y = -400;
+      }
+    } else if (powerUp == 2) { 
+      if (tasteNavigare.left.isDown) {
+        jucator.animations.play('mers', 10, true);
+        jucator.body.velocity.x = -300;
+        jucator.scale.x = - 1;
+      }
+      // Este sageata dreapta apasata?
+      else if (tasteNavigare.right.isDown) {
+        jucator.animations.play('mers', 10, true);
+        jucator.body.velocity.x = 300;
+        jucator.scale.x = 1;
+      }
+      // Jucatorul nu se misca
+      else {
+        jucator.animations.stop();
+      }
+
+      // Conditie saritura
+      if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
+        jucator.body.velocity.y = -600;
+      }
+    } else{
+        if (tasteNavigare.left.isDown) {
+          jucator.animations.play('mers', 10, true);
+          jucator.body.velocity.x = -100;
+          jucator.scale.x = - 1;
+        }
+        // Este sageata dreapta apasata?
+        else if (tasteNavigare.right.isDown) {
+          jucator.animations.play('mers', 10, true);
+          jucator.body.velocity.x = 100;
+          jucator.scale.x = 1;
+        }
+        // Jucatorul nu se misca
+        else {
+          jucator.animations.stop();
+        }
+
+        // Conditie saritura
+        if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
+          jucator.body.velocity.y = -400;
+        }
     }
 
     // Conditie victorie
@@ -293,6 +392,7 @@ function initializeazaJoc() {
     if (jucatorulAPierdut) {
       mesajPierdere.text = "AI PIERDUT!";
     }
+    
   }
 
   function randeaza() {
