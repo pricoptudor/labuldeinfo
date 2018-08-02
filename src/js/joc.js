@@ -207,7 +207,7 @@ function initializeazaJoc() {
     }
 
     // Conditie saritura
-    if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
+    if (butonSaritura.isDown ) {
       jucator.body.velocity.y = -400;
     }
 
