@@ -56,8 +56,20 @@ function adaugaPlatforme() {
   function adaugaPlatforme() {
     platforme = joc.add.physicsGroup();
     platforme.create(300, 150, 'platforma');
-  
-    platforme.setAll('body.immovable', true);
+    initializeazaplatforma(350, 140,'platforma');
+  /*
+  * Task 1: Adauga o platforma astfel incat
+  * sa colectezi o moneda. - 10 puncte.
+  *
+  *
+  * Task 2: Colecteaza restul de monede. - 5 puncte.
+  * 
+  * Introdu codul tau aici
+  * Indiciu: linia de mai sus
+  * 
+  * Extra: Orice alt mode de colectare 
+  * al monezilor (toate) - 10 puncte. Hack & slash!!!
+  * */
 }
 
 /***********************************************
@@ -93,7 +105,7 @@ function adaugaInsignaVictorie() {
 /****************************************************
  * Primeste un obiect ca parametru, modifica scor
  ****************************************************/
-function managerObiecte(obiect) {
+function managerObiecte(jucator, obiect) {
   obiect.kill();
   scor = scor + 10;
   if (scor >= scorVictorie) {
@@ -104,7 +116,7 @@ function managerObiecte(obiect) {
 /***************************************************
  * Manager - jucatorul a colectat insigna victoriei
  ***************************************************/
-function managerInsignaVictorie(insigna) {
+function managerInsignaVictorie(jucator, insigna) {
   insigna.kill();
   jucatorulACastigat = true;
 }
