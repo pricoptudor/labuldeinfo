@@ -14,6 +14,7 @@ let butonSaritura;
 let text;
 let mesajVictorie;
 let variabile;
+let otrava;
 
 /*##########################################################
  ***                       Functii                       ***
@@ -37,8 +38,13 @@ function aduagaMonede() {
 
 function adaugaOtrava(){
   otrava = joc.add.physicsGroup();
-  initializeazaObiect(300,300,'otrava');
+  // initializeazaObiect(300,300,'otrava');
+  otrava.create(150,100,'otrava');
+  
+  
 }
+
+
 /***************************
 * Adauga platforme pe ecran
 ****************************/
@@ -211,7 +217,7 @@ function initializeazaJoc() {
 
     // Conditie saritura
     if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
-      jucator.body.velocity.y = -400;
+      jucator.body.velocity.y = -1000;
     }
 
     // Conditie victorie
