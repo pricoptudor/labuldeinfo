@@ -17,6 +17,8 @@ let variabile;
 let jucatorulAPierdut = false;
 let mesajPierdere;
 let otravuri;
+let vieti = 3;
+let textVieti;
 let coordonateMonede = [
   {X: 375, Y:400},
   {X: 450, Y:100},
@@ -89,12 +91,18 @@ function adaugaInsignaVictorie() {
 ************************/
 function adaugaOtrava() {
   otravuri = joc.add.physicsGroup();
-  let otrava = otravuri.create(250, 400, 'otrava');
+  let otrava1 = otravuri.create(250, 400, 'otrava'); //platforma
+  let otrava2 = otravuri.create(150, 550, 'otrava'); //jos
+  let otrava3 = otravuri.create(350, 100, 'otrava'); //sus
   // efectul il definim noi, la fel de bine se putea numi 'sticla'
   // atat timp cat cele doua proprietati ale animatitie sunt identice
   // pentru '.add' si '.play'
-  otrava.animations.add('bule');
-  otrava.animations.play('bule', 8, true);
+  otrava1.animations.add('bule');
+  otrava1.animations.play('bule', 8, true);
+  otrava2.animations.add('bule');
+  otrava2.animations.play('bule', 8, true);
+  otrava3.animations.add('bule');
+  otrava3.animations.play('bule', 8, true);
 }
 
 /****************************************************
@@ -121,8 +129,9 @@ function managerInsignaVictorie(jucator, insigna) {
  ***************************************************/
 function managerOtrava (jucator, otrava) {
   otrava.kill();
-  jucator.kill();
-  jucatorulAPierdut = true;
+  vieti--;
+  if (vieti == 0)
+    jucatorulAPierdut = 1;
 }
 
 /***************************************************
@@ -177,6 +186,7 @@ function initializeazaJoc() {
     tasteNavigare = joc.input.keyboard.createCursorKeys();
     butonSaritura = joc.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     text = joc.add.text(16, 16, "SCOR: " + scor, { font: "bold 24px Arial", fill: "white" });
+    textVieti = joc.add.text(16, 42, "VIETI: " + vieti, { font: "bold 24px Arial", fill: "white" });
     mesajVictorie = joc.add.text(joc.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
     mesajVictorie.anchor.setTo(0.5, 1);
     mesajPierdere = joc.add.text(joc.world.centerX, 275, "", { font: "bold 48px Arial", fill: "White"});
@@ -190,6 +200,7 @@ function initializeazaJoc() {
   function updateazaJoc() {
 
     text.text = "SCOR: " + scor;
+    textVieti.text = "VIETI: " + vieti;
     joc.physics.arcade.collide(jucator, platforme);
     joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
@@ -225,6 +236,7 @@ function initializeazaJoc() {
     }
     // Conditie Pierdere
     if (jucatorulAPierdut) {
+      jucator.kill();
       mesajPierdere.text = "AI PIERDUT!";
     }
   }
