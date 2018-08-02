@@ -204,6 +204,7 @@ function initializeazaJoc() {
     mesajVictorie.anchor.setTo(0.5, 1);
     mesajPierdere = joc.add.text(joc.world.centerX, 275, "", { font: "bold 48px Arial", fill: "White"});
     mesajPierdere.anchor.setTo(0.5, 1);
+    broasca.anchor.setTo(0.5, 0);
   }
 
   /********************************************************
@@ -222,10 +223,12 @@ function initializeazaJoc() {
     jucator.body.velocity.x = 0;
     
     if(broasca.x>320)
-       broasca.body.velocity.x = -200;
+    { broasca.body.velocity.x = -200;
+      broasca.scale.x = -1;}
     else
       if(broasca.x<150)
-        broasca.body.velocity.x = 200;
+        {broasca.body.velocity.x = 200;
+          broasca.scale.x = 1;}
 
     // Este sageata stanga apasata?
     if (tasteNavigare.left.isDown) {
