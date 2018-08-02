@@ -17,6 +17,13 @@ let variabile;
 let jucatorulAPierdut = false;
 let mesajPierdere;
 let otravuri;
+let coordonateMonede = [
+  {X: 375, Y:400},
+  {X: 450, Y:100},
+  {X: 500, Y:100},
+  {X: 550, Y:100},
+  {X: 600, Y:100},
+];
 
 /*##########################################################
  ***                       Functii                       ***
@@ -24,15 +31,20 @@ let otravuri;
 
 /*************************
  * Adauga monede pe ecran
+ * 
+ * Coordante este un array de array'uri de 2 elemente
  *************************/
-function aduagaMonede() {
+
+function aduagaMonede(coordanate) {
   obiecte = joc.add.physicsGroup();
 
-  initializeazaObiect(375, 400, 'moneda');
-  initializeazaObiect(450, 100, 'moneda');
-  initializeazaObiect(500, 100, 'moneda');
-  initializeazaObiect(550, 100, 'moneda');
-  initializeazaObiect(600, 100, 'moneda');
+  for(let index=0; index<5; index++) {
+    if(coordanate[index].X === null || coordanate[index].Y == 'undefined') {
+      console.log("adauagaMonede: eroare coordonate");
+    } 
+
+    initializeazaObiect(coordanate[index].X, coordanate[index].Y, 'moneda');
+  }
 }
 
 /***************************
@@ -40,6 +52,7 @@ function aduagaMonede() {
 ****************************/
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
+
   platforme.create(450, 150, 'platforma');
   platforme.create(250, 450, 'platforma');
   platforme.create(150, 300, 'platforma' );
@@ -48,13 +61,7 @@ function adaugaPlatforme() {
 }
 
 /***********************************************
- * Initializeaza obiecte si le adauga pe ecran
- *
- * Task 3: 10 puncte
- *
- * Modifica functia pentru a putea decide viteza
- * cu care obiectul adaugat se invarte folosindu-te
- * de un parametru
+ * Initializeaza obiecte si le adauga pe ecran *
  ***********************************************/
 function initializeazaObiect( x, y, imagine) {
   let obiect = obiecte.create(x, y, imagine);
@@ -114,6 +121,7 @@ function managerInsignaVictorie(jucator, insigna) {
  ***************************************************/
 function managerOtrava (jucator, otrava) {
   otrava.kill();
+  jucator.kill();
   jucatorulAPierdut = true;
 }
 
@@ -154,14 +162,14 @@ function initializeazaJoc() {
 
     // Jucator
     jucator = joc.add.sprite(50, 600, 'jucator');
-    jucator.animations.add('walk');
+    jucator.animations.add('mers');
     jucator.anchor.setTo(0.5, 1);
     joc.physics.arcade.enable(jucator);
     jucator.body.collideWorldBounds = true;
     jucator.body.gravity.y = 500;
 
     // Obiecte
-    aduagaMonede();
+    aduagaMonede(coordonateMonede);
     adaugaPlatforme();
     adaugaOtrava();
 
@@ -191,13 +199,13 @@ function initializeazaJoc() {
 
     // Este sageata stanga apasata?
     if (tasteNavigare.left.isDown) {
-      jucator.animations.play('walk', 10, true);
+      jucator.animations.play('mers', 10, true);
       jucator.body.velocity.x = -300;
       jucator.scale.x = - 1;
     }
     // Este sageata dreapta apasata?
     else if (tasteNavigare.right.isDown) {
-      jucator.animations.play('walk', 10, true);
+      jucator.animations.play('mers', 10, true);
       jucator.body.velocity.x = 300;
       jucator.scale.x = 1;
     }
