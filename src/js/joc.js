@@ -118,6 +118,7 @@ function adaugaBroasca() {
   broascaMiscatoare.animations.play('mers', 6, true);
   broascaMiscatoare.body.collideWorldBounds = true;
   broascaMiscatoare.body.velocity.x = 50; 
+  broascaMiscatoare.anchor.setTo(0.5, 0);
 }
 
 
@@ -241,8 +242,10 @@ function initializeazaJoc() {
 
     if ( broascaMiscatoare.x > coordonateBroasca.max) {
       broascaMiscatoare.body.velocity.x = -50;
+      broascaMiscatoare.scale.x *= -1;
     }else if (broascaMiscatoare.x < coordonateBroasca.min){
       broascaMiscatoare.body.velocity.x = 50;
+      broascaMiscatoare.scale.x *= -1;
     }
 
     // Este sageata stanga apasata?
@@ -263,7 +266,7 @@ function initializeazaJoc() {
     }
 
     // Conditie saritura
-    if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
+    if ((butonSaritura.isDown || tasteNavigare.up.isDown) && (jucator.body.onFloor() || jucator.body.touching.down)) {
       jucator.body.velocity.y = -400;
     }
 
