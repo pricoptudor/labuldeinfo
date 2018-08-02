@@ -4,6 +4,7 @@
 let joc;
 let jucator;
 let platforme;
+let plat;
 let jucatorulACastigat = false;
 let scor = 0;
 let scorVictorie = 50;
@@ -17,6 +18,9 @@ let variabile;
 let jucatorulAPierdut = false;
 let mesajPierdere;
 let otravuri;
+let broasca;
+let broaste;
+let broasca2;
 let coordonateMonede = [
   {X: 375, Y:400},
   {X: 450, Y:100},
@@ -55,11 +59,48 @@ function adaugaPlatforme() {
 
   platforme.create(450, 150, 'platforma');
   platforme.create(250, 450, 'platforma');
-  platforme.create(150, 300, 'platforma' );
-  platforme.create(300, 150, 'platforma');
+  platforme.create(600,300,'platforma2');
+  // platforme
+  // platforme.create(150, 300, 'platforma2');
+  platforme.create(300, 150, 'platforma2');
   platforme.setAll('body.immovable', true);
 }
 
+function platformaMiscare() {
+
+  plats = joc.add.physicsGroup();
+  let plat = plats.create(150, 300, 'platforma2');
+
+  // plat.animations.add('mers');
+  plat.collideWorldBounds = true;
+  // while(jucator)
+  // {
+    // if(plat.scale.x>50)
+    // {
+    //   // plat.animations.play('mers', 10, true);
+    //   plat.velocity.x=-300;
+    //   plat.scale.x=-50;
+    // }
+  // }
+  
+    // jucator.animations.play('mers', 10, true);
+    plat.body.velocity.x = 100;
+    plat.scale.x =  1;
+    plat.body.gravity.y = 0;
+    plat.anchor.setTo(0.5, 1);
+    
+    // plats.setAll('body.immovable', true);
+}
+
+function ObiecteMargine(){
+  broaste = joc.add.physicsGroup();
+  broasca = broaste.create(750,270,'broasca');
+  broasca2 = broaste.create(0,270,'broasca');
+  // broasca.body.gravity.y=50;
+  broasca.body.velocity=-0.1;
+  // broasca.scale.x=-0.01;
+  broaste.setAll('body.immovable', true);
+}
 /***********************************************
  * Initializeaza obiecte si le adauga pe ecran *
  ***********************************************/
@@ -153,6 +194,8 @@ function initializeazaJoc() {
 
     // De ce 32, 32, uhm?...
     joc.load.spritesheet('otrava', 'src/img/otrava.png', 32, 32); 
+    joc.load.spritesheet('platforma2','src/img/platformaTip2.png');
+    joc.load.spritesheet('broasca','src/img/broasca.png',32,32);
   }
 
   /***************************************************
@@ -161,7 +204,7 @@ function initializeazaJoc() {
   function seteazaStareaInitialaSiActiunile() {
 
     // Jucator
-    jucator = joc.add.sprite(50, 600, 'jucator');
+    jucator = joc.add.sprite(600, 50, 'jucator');
     jucator.animations.add('mers');
     jucator.anchor.setTo(0.5, 1);
     joc.physics.arcade.enable(jucator);
@@ -172,6 +215,8 @@ function initializeazaJoc() {
     aduagaMonede(coordonateMonede);
     adaugaPlatforme();
     adaugaOtrava();
+    platformaMiscare();
+    ObiecteMargine();
 
     // Interactiuni
     tasteNavigare = joc.input.keyboard.createCursorKeys();
@@ -183,6 +228,7 @@ function initializeazaJoc() {
     mesajPierdere.anchor.setTo(0.5, 1);
   }
 
+  
   /********************************************************
    * Functie care updateaza starea jocului - in functie de
    * input'ul utilizatorului.
@@ -191,10 +237,16 @@ function initializeazaJoc() {
 
     text.text = "SCOR: " + scor;
     joc.physics.arcade.collide(jucator, platforme);
+    joc.physics.arcade.collide(plats,platforme);
+    joc.physics.arcade.collide(broaste,platforme);
+    joc.physics.arcade.collide(broaste,plats);
+    // joc.physics.arcade.collide(broasca,plat);
+    joc.physics.arcade.collide(jucator, plats);
     joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
     joc.physics.arcade.overlap(jucator, otravuri, managerOtrava);
 
+    joc.physics.arcade.enable(broasca);
     jucator.body.velocity.x = 0;
 
     // Este sageata stanga apasata?
