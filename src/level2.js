@@ -229,16 +229,16 @@ function initializeazaJoc() {
    ***************************************************/
   function incarcaTexturi() {
     // Incarca artefacte
-    joc.load.image('platformaInceput', 'src/img/platformaTip1.png');
-    joc.load.image('platforma', 'src/img/platformaTip3.png');
-    joc.load.image('bg', 'src/img/back.jpg');
-    joc.load.spritesheet('jucator', 'src/img/jucator.png', 48, 62);
-    joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
-    joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
-    joc.load.spritesheet('otrava', 'src/img/otrava.png', 32, 32); 
-    joc.load.spritesheet('lava', 'src/img/lava.png');
-    joc.load.spritesheet('stea', 'src/img/stea.png', 32, 32);
-    joc.load.audio('song', 'src/misc/8bit-song.mp3');
+    joc.load.image('platformaInceput', 'img/platformaTip1.png');
+    joc.load.image('platforma', 'img/platformaTip3.png');
+    joc.load.image('bg', 'img/back.jpg');
+    joc.load.spritesheet('jucator', 'img/jucator.png', 48, 62);
+    joc.load.spritesheet('moneda', 'img/moneda.png', 36, 44);
+    joc.load.spritesheet('insigna', 'img/insigna.png', 42, 54);
+    joc.load.spritesheet('otrava', 'img/otrava.png', 32, 32); 
+    joc.load.spritesheet('lava', 'img/lava.png');
+    joc.load.spritesheet('stea', 'img/stea.png', 32, 32);
+    joc.load.audio('song', 'misc/8bit-song.mp3');
   }
 
   /***************************************************
@@ -403,14 +403,14 @@ function initializeazaJoc() {
     // Conditie victorie
     if (jucatorulACastigat) {
       jucator.kill();
-      document.location.reload()
+      document.location.reload();
 
       //mesajVictorie.text = "AI CASTIGAT!";
     }
     // Conditie Pierdere
     if (jucatorulAPierdut) {
       jucator.kill();
-      document.location.reload()
+      document.location.reload();
       
       //mesajPierdere.text = "AI PIERDUT!";
     }
