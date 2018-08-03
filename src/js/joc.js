@@ -251,7 +251,7 @@
      joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
      joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
      joc.load.spritesheet('broasca', 'src/img/broasca.png', 32, 32);
-     joc.load.image('fundal', 'src/img/fundal.png', 805, 605);
+     joc.load.image('fundal', 'src/img/fundal.png', 800, 600);
  
      // De ce 32, 32, uhm?...
      joc.load.spritesheet('otrava', 'src/img/otrava.png', 32, 32); 
@@ -262,7 +262,7 @@
     * Starea initiala a jocului
     ***************************************************/
    function seteazaStareaInitialaSiActiunile() {
-     back = joc.add.tileSprite(0, 0, 805, 605, 'fundal');
+     back = joc.add.tileSprite(0, 0, 800, 600, 'fundal');
      // Jucator
      jucator = joc.add.sprite(50, 600, 'jucator');
      jucator.animations.add('mers');
