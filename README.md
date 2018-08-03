@@ -9,8 +9,6 @@ Cloneaza proiectul folosind comanda 'git clone'. E.g.:
 
 ## git clone https://github.com/FunLabs/labuldeinfo.git
 
-
-# Cum nu editez ?
 # Cum editez codul?
 
 Folosind un editor cod spre exemplu: VSCode https://code.visualstudio.com/ 
@@ -28,6 +26,9 @@ Pasi:
 
 1. Dupa ce ai terminat de downloadat / instalat, deschizi WebServer - selectezi folderul proiectului. 
 2. Deschide browserul Chrome si acceseaza in bara de input: localhost:8887
+
+
+# Cum se face hosting: https://pages.github.com/ 
 
 
 
