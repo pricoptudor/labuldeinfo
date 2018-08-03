@@ -55,36 +55,45 @@ let coordonateMonede = [
  * Coordante este un array de array'uri de 2 elemente
  *************************/
 
+let moneda1, moneda2, moneda3;
 function aduagaMonede(coordonate) {
   obiecte = joc.add.physicsGroup();
 
-  for(let index = 0; index < 5; index++) {
-    if (index == 1) {
-      monedaGrea = obiecte.create(coordonate[1].X, coordonate[1].Y, 'moneda');
-      monedaGrea.animations.add('spin');
-      monedaGrea.animations.play('spin', 10, true);
-      monedaGrea.body.gravity.x = 0;
-      monedaGrea.body.velocity.x = 300;
-    } else if (index == 4) {
-      monedaGrea2 = obiecte.create(coordonate[4].X, coordonate[4].Y, 'moneda');
-      monedaGrea2.animations.add('spin');
-      monedaGrea2.animations.play('spin', 10, true);
-    } else 
-    initializeazaObiect(coordonate[index].X, coordonate[index].Y, 'moneda');
-  }
+  monedaGrea2 = obiecte.create(coordonate[4].X, coordonate[4].Y, 'moneda');
+  monedaGrea2.animations.add('spin');
+  monedaGrea2.animations.play('spin', 10, true);
+  
+  moneda1 = obiecte.create(coordonate[0].X, coordonate[0].Y, 'moneda');
+  moneda1.animations.add('spin');
+  moneda1.animations.play('spin', 10, true);
+
+  moneda2 = obiecte.create(coordonate[2].X, coordonate[2].Y, 'moneda');
+  moneda2.animations.add('spin');
+  moneda2.animations.play('spin', 10, true);
+
+  moneda3 = obiecte.create(coordonate[3].X, coordonate[3].Y, 'moneda');
+  moneda3.animations.add('spin');
+  moneda3.animations.play('spin', 10, true);
+
+  monedaGrea = obiecte.create(coordonate[1].X, coordonate[1].Y, 'moneda');
+  monedaGrea.animations.add('spin');
+  monedaGrea.animations.play('spin', 10, true);
+  monedaGrea.body.gravity.x = 0;
+  monedaGrea.body.velocity.x = 300;
 }
 
 /***************************
 * Adauga platforme pe ecran
 ****************************/
 
+let pal1, pal2, pal3, pal4;
 function adaugaPlatforme() {
   platforme = joc.add.physicsGroup();
   
-  platforme.create(250, 450, 'platforma'); //jos init
-  platforme.create(100, 250, 'platforma'); //stanga max
-  platforme.create(1125, 100, 'platforma'); //finish
-  platforme.create(860, 200, 'platforma'); //comentariu 
+  pal1 = platforme.create(250, 450, 'platforma'); //jos init
+  pal2 = platforme.create(100, 250, 'platforma'); //stanga max
+  pal3 = platforme.create(1125, 100, 'platforma'); //finish
+  pal4 = platforme.create(860, 200, 'platforma'); //comentariu 
 
   palGrea = platforme.create(350, 350, 'platforma');
   palGrea.body.gravity.x = 0;
@@ -97,23 +106,13 @@ function adaugaPlatforme() {
   platforme.setAll('body.immovable', true);
 }
 
-/***********************************************
- * Initializeaza obiecte si le adauga pe ecran *
- ***********************************************/
-function initializeazaObiect( x, y, imagine) {
-  let obiect = obiecte.create(x, y, imagine);
-
-  // Atribuie obiectului proprietatea 'spin'(rotatie)
-  obiect.animations.add('spin');
-  obiect.animations.play('spin', 10, true);
-}
-
 /*************
 * Adauga stea
 *************/
+let steluta;
 function adaugaSteluta() {
   stea = joc.add.physicsGroup();
-  let steluta = stea.create(1150, 530, 'stea');
+  steluta = stea.create(1150, 530, 'stea');
   steluta.animations.add('spin');
   steluta.animations.play('spin', 8, true);
 }
@@ -121,9 +120,10 @@ function adaugaSteluta() {
 /****************************************************
  * Initializeaza si adauga insigna victoriei pe ecran
  ***************************************************/
-function adaugaInsignaVictorie() {
+let insigna;
+ function adaugaInsignaVictorie() {
   insigne = joc.add.physicsGroup();
-  let insigna = insigne.create(1150, 25, 'insigna');
+  insigna = insigne.create(1150, 25, 'insigna');
   insigna.animations.add('spin');
   insigna.animations.play('spin', 8, true);
 }
@@ -281,6 +281,7 @@ function initializeazaJoc() {
     joc.time.events.loop(Phaser.Timer.SECOND, timp, this);
   }
 
+
   function timp() {
     counter++;
   }
@@ -402,12 +403,16 @@ function initializeazaJoc() {
     // Conditie victorie
     if (jucatorulACastigat) {
       jucator.kill();
-      mesajVictorie.text = "AI CASTIGAT!";
+      document.location.reload()
+
+      //mesajVictorie.text = "AI CASTIGAT!";
     }
     // Conditie Pierdere
     if (jucatorulAPierdut) {
       jucator.kill();
-      mesajPierdere.text = "AI PIERDUT!";
+      document.location.reload()
+      
+      //mesajPierdere.text = "AI PIERDUT!";
     }
   }
 
