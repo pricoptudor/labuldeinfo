@@ -2,12 +2,9 @@
  ***                 Variabile globale                   ***
  ###########################################################*/
  let joc;
- let nivel = 1;
- let total = 0;
  let jucator;
  let platforme;
  let jucatorulACastigat = false;
- let mesajDisparut = false;
  let scor = 0;
  let scorVictorie = 50;
  let insigne;
@@ -15,7 +12,6 @@
  let tasteNavigare;
  let butonSaritura;
  let text;
- let text2;
  let mesajVictorie;
  let variabile;
  let jucatorulAPierdut = false;
@@ -23,7 +19,6 @@
  let otravuri;
  let monede = [];
  let stele;
- let back;
  let powerUp = 0;
  let coordonateMonede = [
    {X: 375, Y:400},
@@ -92,8 +87,6 @@
    platforme.create(350, 540, 'platforma');
    platforme.setAll('body.immovable', true);
  }
- 
- 
  
  /***********************************************
   * Initializeaza obiecte si le adauga pe ecran *
@@ -177,26 +170,13 @@
    }
  }
  
- 
  /***************************************************
   * Manager - jucatorul a colectat insigna victoriei
   ***************************************************/
  function managerInsignaVictorie(jucator, insigna) {
    insigna.kill();
+   jucator.kill();
    jucatorulACastigat = true;
-     platforme.destroy();
-     broaste.destroy();
-     otravuri.destroy();
-     stele.destroy();
-     jucator.x=50;
-     jucator.y=600;
-     joc.stage.background='fundal.png';
-     setTimeout(function() {
-     mesajDisparut = true;
-     jucatorulACastigat = false;
-   }, 3000);
-   nivel = nivel + 1;
-   
  }
  
  /***************************************************
@@ -231,19 +211,15 @@
        create:  seteazaStareaInitialaSiActiunile,
        update:  updateazaJoc,
        render:  randeaza
-      
      }
    );
- 
- 
  
    /***************************************************
     * Incarca imaginile si seteaza dimensiunile acestora
     ***************************************************/
    function incarcaTexturi() {
      // Seteaza culoarea de fundal
-     //joc.stage.backgroundColor = '#af2345';
-     
+     joc.stage.backgroundColor = '#af2345';
  
      // Incarca artefacte
      joc.load.image('platforma', 'src/img/platformaTip2.png');
@@ -251,7 +227,6 @@
      joc.load.spritesheet('moneda', 'src/img/moneda.png', 36, 44);
      joc.load.spritesheet('insigna', 'src/img/insigna.png', 42, 54);
      joc.load.spritesheet('broasca', 'src/img/broasca.png', 32, 32);
-     joc.load.image('fundal', 'src/img/fundal.png', 800, 600);
  
      // De ce 32, 32, uhm?...
      joc.load.spritesheet('otrava', 'src/img/otrava.png', 32, 32); 
@@ -262,7 +237,7 @@
     * Starea initiala a jocului
     ***************************************************/
    function seteazaStareaInitialaSiActiunile() {
-     back = joc.add.tileSprite(0, 0, 800, 600, 'fundal');
+ 
      // Jucator
      jucator = joc.add.sprite(50, 600, 'jucator');
      jucator.animations.add('mers');
@@ -282,27 +257,23 @@
      tasteNavigare = joc.input.keyboard.createCursorKeys();
      butonSaritura = joc.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
      text = joc.add.text(16, 16, "SCOR: " + scor, { font: "bold 24px Arial", fill: "white" });
-     text2 = joc.add.text(200, 16, "NIVEL: " + nivel, { font: "bold 24px Arial", fill: "white" });
      mesajVictorie = joc.add.text(joc.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
      mesajVictorie.anchor.setTo(0.5, 1);
      mesajPierdere = joc.add.text(joc.world.centerX, 275, "", { font: "bold 48px Arial", fill: "White"});
      mesajPierdere.anchor.setTo(0.5, 1);
      broasca.anchor.setTo(0.5, 0);
-  
- }
+   }
  
    /********************************************************
     * Functie care updateaza starea jocului - in functie de
     * input'ul utilizatorului.
     *******************************************************/
    function updateazaJoc() {
-     back.tilePosition.x +=  0.5;
-   
+ 
      text.text = "SCOR: " + scor;
-     text2.text = "NIVEL: " + nivel;
      joc.physics.arcade.collide(jucator, platforme);
      joc.physics.arcade.overlap(jucator, obiecte, managerObiecte);
-     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie,);
+     joc.physics.arcade.overlap(jucator, insigne, managerInsignaVictorie);
      joc.physics.arcade.overlap(jucator, otravuri, managerOtrava);
      joc.physics.arcade.overlap(jucator, broasca, managerBroasca);
      joc.physics.arcade.overlap(jucator, stele, managerStea);
@@ -384,12 +355,7 @@
        // Jucatorul nu se misca
        else {
          jucator.animations.stop();
-     
        }
- 
-     
- 
-      
  
        // Conditie saritura
        if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
@@ -420,25 +386,18 @@
  
      // Conditie victorie
      if (jucatorulACastigat) {
-       mesajVictorie.text = "Ai ajuns la Nivelul 2!";
-      
- 
-     }
-     else if (mesajDisparut){
-       mesajVictorie.text = "";
+      window.location.href = "src/level2.html";
+      //mesajVictorie.text = "AI CASTIGAT!!!";
      }
      // Conditie Pierdere
      if (jucatorulAPierdut) {
        mesajPierdere.text = "AI PIERDUT!";
+       document.location.reload();
      }
      
    }
  
- 
- 
- 
-  
    function randeaza() {
    }
  }
-
+ 
