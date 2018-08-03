@@ -88,6 +88,22 @@ function adaugaPlatforme() {
   platforme.setAll('body.immovable', true);
 }
 
+function Platforma()
+{
+  plats=joc.add.physicsGroup();
+  platf=plats.create(300,300,'platforma');
+  if(platf.x>320) { 
+    platf.body.velocity.x = -200;
+    platf.scale.x = -1;
+  }
+  else if(platf.x<150) {
+    platf.body.velocity.x = 200;
+    platf.scale.x = 1;
+  }
+  
+  
+}
+
 /***********************************************
  * Initializeaza obiecte si le adauga pe ecran *
  ***********************************************/
@@ -183,15 +199,17 @@ function managerInsignaVictorie(jucator, insigna) {
  * Manager - jucatorul a fost otravit
  ***************************************************/
 function managerOtrava (jucator, otrava) {
-  otrava.kill();
-  jucator.kill();
-  jucatorulAPierdut = true;
+  // otrava.kill();
+  jucator.body.x=50;
+  jucator.body.y=600;
 }
 
 function managerBroasca (jucator, broasca){
-  broasca.kill();
-  jucator.kill();
-  jucatorulAPierdut = true;
+  // broasca.kill();
+  // jucator.kill();
+  // jucatorulAPierdut = true;
+  jucator.body.x=50;
+  jucator.body.y=600;
 }
 function managerStea (jucator, stea) {
   
@@ -252,6 +270,7 @@ function initializeazaJoc() {
     adaugaPlatforme();
     adaugaOtrava();
     adaugaBroasca();
+    Platforma();
 
     // Interactiuni
     tasteNavigare = joc.input.keyboard.createCursorKeys();
@@ -316,8 +335,8 @@ function initializeazaJoc() {
       }
 
       // Conditie saritura
-      if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
-        jucator.body.velocity.y = -400;
+      if (butonSaritura.isDown) {
+        jucator.body.velocity.y = -200;
       }
     } else if (powerUp == 1) {
       if (tasteNavigare.left.isDown) {
@@ -337,8 +356,8 @@ function initializeazaJoc() {
       }
 
       // Conditie saritura
-      if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
-        jucator.body.velocity.y = -400;
+      if (butonSaritura.isDown) {
+        jucator.body.velocity.y = -200;
       }
     } else if (powerUp == 2) { 
       if (tasteNavigare.left.isDown) {
@@ -358,8 +377,8 @@ function initializeazaJoc() {
       }
 
       // Conditie saritura
-      if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
-        jucator.body.velocity.y = -600;
+      if (butonSaritura.isDown ) {
+        jucator.body.velocity.y = -200;
       }
     } else{
         if (tasteNavigare.left.isDown) {
@@ -379,8 +398,8 @@ function initializeazaJoc() {
         }
 
         // Conditie saritura
-        if (butonSaritura.isDown && (jucator.body.onFloor() || jucator.body.touching.down)) {
-          jucator.body.velocity.y = -400;
+        if (butonSaritura.isDown) {
+          jucator.body.velocity.y = -200;
         }
     }
 
