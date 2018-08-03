@@ -5,6 +5,7 @@ let joc;
 let jucator;
 let platforme;
 let jucatorulACastigat = false;
+let mesajExpirat = false;
 let scor = 0;
 let scorVictorie = 50;
 let insigne;
@@ -12,6 +13,8 @@ let obiecte;
 let tasteNavigare;
 let butonSaritura;
 let text;
+let textNivel;
+let nivel = 1;
 let mesajVictorie;
 let variabile;
 let jucatorulAPierdut = false;
@@ -175,8 +178,26 @@ function managerObiecte(jucator, obiect) {
  ***************************************************/
 function managerInsignaVictorie(jucator, insigna) {
   insigna.kill();
-  jucator.kill();
+  //jucator.kill();
+
+  //Repozitionam jucatorul
+  jucator.x = 50;
+  jucator.y = 600;
+  powerUp = 0;
+
+  platforme.destroy();
+  otravuri.destroy();
+  stele.destroy();
+  broasca.kill();
+  
+  nivel += 1;
+  textNivel.text = "NIVEL: " + nivel;
+
   jucatorulACastigat = true;
+
+  setTimeout(function(){
+    mesajExpirat = true;
+  }, 2000);
 }
 
 /***************************************************
@@ -257,6 +278,7 @@ function initializeazaJoc() {
     tasteNavigare = joc.input.keyboard.createCursorKeys();
     butonSaritura = joc.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     text = joc.add.text(16, 16, "SCOR: " + scor, { font: "bold 24px Arial", fill: "white" });
+    textNivel = joc.add.text(200, 16, "NIVEL: " + nivel, { font: "bold 24px Arial", fill: "white" });
     mesajVictorie = joc.add.text(joc.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
     mesajVictorie.anchor.setTo(0.5, 1);
     mesajPierdere = joc.add.text(joc.world.centerX, 275, "", { font: "bold 48px Arial", fill: "White"});
@@ -385,8 +407,11 @@ function initializeazaJoc() {
     }
 
     // Conditie victorie
-    if (jucatorulACastigat) {
+    if (jucatorulACastigat && !mesajExpirat) {
       mesajVictorie.text = "AI CASTIGAT!!!";
+    }
+    else if(mesajExpirat) {
+      mesajVictorie.text = "";
     }
     // Conditie Pierdere
     if (jucatorulAPierdut) {
